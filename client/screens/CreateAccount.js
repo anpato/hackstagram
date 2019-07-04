@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, Text, FlatList } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Input, Button } from '../src/components/common'
+import { Ionicons } from '@expo/vector-icons'
 export default class CreateAccount extends Component {
 	constructor() {
 		super()
@@ -12,9 +13,28 @@ export default class CreateAccount extends Component {
 			username: '',
 			password: '',
 			confirmPassword: '',
+			skill: '',
 			skills: [],
+			data: [],
+			skillsData: [],
 			step: 1
 		}
+	}
+
+	createData = () => {
+		const { firstName, lastName, email, username, skills } = this.state
+		const userInfo = [
+			{ key: firstName },
+			{ key: lastName },
+			{ key: email },
+			{ key: username }
+		]
+		return skills.map((skill) => {
+			userInfo.push({ key: skill })
+			return this.setState({
+				data: [...this.state.data, ...userInfo]
+			})
+		})
 	}
 
 	nextStep = () => {
@@ -33,8 +53,11 @@ export default class CreateAccount extends Component {
 			username,
 			password,
 			confirmPassword,
-			skills
+			skill,
+			skills,
+			data
 		} = this.state
+		console.log(data)
 		switch (step) {
 			case 1:
 				return (
@@ -56,7 +79,11 @@ export default class CreateAccount extends Component {
 							value={email}
 							onChangeText={(email) => this.setState({ email })}
 						/>
-						<Button title="Next" onPress={this.nextStep} />
+						<Button
+							title="Next"
+							onPress={this.nextStep}
+							disabled={firstName && lastName && email ? false : true}
+						/>
 					</LinearGradient>
 				)
 			case 2:
@@ -67,7 +94,7 @@ export default class CreateAccount extends Component {
 						<Input
 							placeholder="Joe_Sho"
 							value={username}
-							onChangeText={(firstName) => this.setState({ username })}
+							onChangeText={(username) => this.setState({ username })}
 						/>
 						<Input
 							secureTextEntry={true}
@@ -77,12 +104,17 @@ export default class CreateAccount extends Component {
 						/>
 						<Input
 							placeholder="Confirm Password"
+							secureTextEntry={true}
 							value={confirmPassword}
 							onChangeText={(confirmPassword) =>
 								this.setState({ confirmPassword })
 							}
 						/>
-						<Button title="Next" onPress={this.nextStep} />
+						<Button
+							title="Next"
+							onPress={this.nextStep}
+							disabled={username && password === confirmPassword ? false : true}
+						/>
 						<Button title="Back" onPress={this.prevStep} />
 					</LinearGradient>
 				)
@@ -92,30 +124,67 @@ export default class CreateAccount extends Component {
 						colors={['#3E0072', '#AE00E2']}
 						style={styles.gradient}>
 						<Input
-							placeholder="First Name"
-							value={firstName}
-							onChangeText={(firstName) => this.setState({ firstName })}
+							placeholder="Languages"
+							value={skill}
+							onChangeText={(skill) => this.setState({ skill })}
+							name="ios-add-circle-outline"
+							disabled={skill ? false : true}
+							onPress={() =>
+								this.setState({
+									skills: [skill, ...this.state.skills],
+									skill: ''
+								})
+							}
 						/>
-						<Input
-							placeholder="Last Name"
-							value={lastName}
-							onChangeText={(lastName) => this.setState({ lastName })}
+						{skills
+							? skills.map((skill, index) => {
+									return (
+										<Input
+											key={index}
+											placeholder="Languages"
+											value={skill}
+											onChangeText={(skill) => this.setState({ skill })}
+											name="ios-add-circle-outline"
+											disabled={skill ? false : true}
+											onPress={() =>
+												this.setState({
+													skills: [skill, ...this.state.skills],
+													skill: ''
+												})
+											}
+										/>
+									)
+							  })
+							: null}
+						<Button
+							title="Next"
+							onPress={() => {
+								this.nextStep()
+								this.createData()
+							}}
 						/>
-						<Input
-							placeholder="Email"
-							value={email}
-							onChangeText={(email) => this.setState({ email })}
-						/>
-						<Button title="Next" onPress={this.nextStep} />
 						<Button title="Back" onPress={this.prevStep} />
 					</LinearGradient>
 				)
 			case 4:
 				return (
 					<LinearGradient
+						contentContainerStyle={{ flexGrow: 1 }}
 						colors={['#3E0072', '#AE00E2']}
-						style={styles.gradient}
-					/>
+						style={styles.gradient}>
+						<View style={styles.listContainer}>
+							<FlatList
+								data={this.state.data}
+								renderItem={({ item }) => (
+									<Text style={styles.verifyText} key={item.key}>
+										{item.key}
+									</Text>
+								)}
+							/>
+						</View>
+						<Button title="Confirm" />
+						<Button title="Go Back" onPress={this.prevStep} />
+					</LinearGradient>
 				)
 			default:
 				return <View />
@@ -129,5 +198,18 @@ const styles = {
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center'
+	},
+	listContainer: {
+		height: 300,
+		width: 400,
+		alignSelf: 'center',
+		alignItems: 'center',
+		textAlign: 'center'
+	},
+	verifyText: {
+		color: '#f8f8f8',
+		fontSize: 18,
+		borderBottomWidth: 2,
+		borderBottomColor: '#f8f8f8'
 	}
 }
