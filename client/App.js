@@ -7,6 +7,12 @@ import CreateAccount from './screens/CreateAccount'
 const AppNavigator = createStackNavigator({
 	Home: Home,
 	CreateAccount: CreateAccount
+},
+	{
+		headerMode: 'none',
+		navigationOptions: {
+			headerVisible: false
+		}
 })
 
 export default createAppContainer(AppNavigator)

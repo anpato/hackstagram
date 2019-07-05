@@ -1,5 +1,5 @@
 const { Sequelize } = require('sequelize')
-
+const bcrypt = require('bcrypt')
 const db = new Sequelize(
 	process.env.DATABASE_URL || 'postgres://localhost:5432/hackstagram',
 	{
@@ -11,7 +11,11 @@ const db = new Sequelize(
 	}
 )
 const User = db.define('user', {
-	name: {
+	firstName: {
+		type: Sequelize.STRING,
+		allowNull: false
+	},
+	lastName: {
 		type: Sequelize.STRING,
 		allowNull: false
 	},
@@ -71,6 +75,11 @@ const CommentLike = db.define('commentLike', {
 	likes: {
 		type: Sequelize.INTEGER
 	}
+})
+
+User.beforeCreate(async (user, options) => {
+	const hashedPassword = await bcrypt.hash(user.password, 12)
+	user.password = hashedPassword
 })
 
 User.hasMany(Post, { onDelete: 'cascade' })

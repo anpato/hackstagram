@@ -23,12 +23,13 @@ export default class CreateAccount extends Component {
 
 	createData = () => {
 		const { firstName, lastName, email, username, skills } = this.state
-		const userInfo = [
+		let userInfo = [
 			{ key: firstName },
 			{ key: lastName },
 			{ key: email },
 			{ key: username }
 		]
+
 		return skills.map((skill) => {
 			userInfo.push({ key: skill })
 			return this.setState({
@@ -57,7 +58,6 @@ export default class CreateAccount extends Component {
 			skills,
 			data
 		} = this.state
-		console.log(data)
 		switch (step) {
 			case 1:
 				return (

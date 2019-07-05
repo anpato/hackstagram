@@ -16,7 +16,8 @@ const main = async () => {
 
 	// Seed Data
 	const user = await User.create({
-		name: 'Tester 1',
+		firstName: 'John',
+		lastName: 'Smith',
 		username: 'tester',
 		email: 'tester@mail.com',
 		password: '1234',
@@ -25,7 +26,8 @@ const main = async () => {
 	})
 
 	const user1 = await User.create({
-		name: 'tester2',
+		firstName: 'Jane',
+		lastName: 'Doe',
 		username: 'test',
 		email: 'test@mail.com',
 		password: '1234',
@@ -33,7 +35,8 @@ const main = async () => {
 		followers: []
 	})
 	const user2 = await User.create({
-		name: 'tester3',
+		firstName: 'Jackie',
+		lastName: 'Legs',
 		username: 'test3',
 		email: 'test3@mail.com',
 		password: '1234',
