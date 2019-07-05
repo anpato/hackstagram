@@ -21,24 +21,25 @@ passport.use(
 			usernameField: 'username',
 			passwordField: 'password'
 		},
+		// Passport requires two authentication fields
+		// using username and password
+		// reqToCallback allows more fields to be passed to create the user
 		async (req, username, password, done) => {
 			try {
 				const user = await User.create({
 					username: username,
+					password: password,
 					email: req.body.email,
 					firstName: req.body.firstName,
 					lastName: req.body.lastName,
-					password: password,
 					skills: req.body.skills
 				})
-				console.log(user)
 				if (!user) {
 					return done(null, false, { msg: 'Unable to create user' })
 				}
 				done(null, user)
 			} catch (error) {
-				// done(error)
-				console.log(error)
+				done(error)
 			}
 		}
 	)
