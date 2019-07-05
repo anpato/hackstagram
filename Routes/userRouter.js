@@ -19,30 +19,23 @@ userRouter.get('/:id', async (req, res) => {
 	} catch (error) {}
 })
 
-userRouter.get('/:id/posts', async (req, res) => {
+userRouter.get('/verify/:username', async (req, res) => {
 	try {
-		const userPosts = await User.findAll({
-			include: [{ model: Post }],
-			include: [Bookmark],
-			where: { id: req.params.id }
-		})
-		res.send(userPosts)
-	} catch (error) {
-		throw error
-	}
-})
-
-userRouter.get('/users/name/:username', async (req, res) => {
-	try {
-		const users = await User.findAll({
-			where: {
-				username: req.params.username
+		const users = await User.findAll()
+		for (let i = 0; i < users.length; i++) {
+			let currentUsers = users[i].username.toLowerCase()
+			let newUser = req.params.username.toLowerCase()
+			try {
+				if (!currentUsers.includes(newUser)) {
+					res.status(200).send({ msg: 'Username available' })
+				} else {
+					return next(error)
+				}
+			} catch (error) {
+				res.status(400).send({ err: 'Username unavailable' })
 			}
-		})
-		res.send(users)
-	} catch (error) {
-		throw error
-	}
+		}
+	} catch (error) {}
 })
 
 userRouter.get('/skills', async (req, res) => {
