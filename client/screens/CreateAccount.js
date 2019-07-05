@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList } from 'react-native'
+import { View, Text, FlatList, Image } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Input, Button } from '../src/components/common'
 import { Ionicons } from '@expo/vector-icons'
+import { signup } from '../src/services/apiService'
+import CheckMark from '../assets/Checkmark.png'
 export default class CreateAccount extends Component {
 	constructor() {
 		super()
@@ -38,6 +40,33 @@ export default class CreateAccount extends Component {
 		})
 	}
 
+	handleSignUp = async () => {
+		const {
+			username,
+			firstName,
+			lastName,
+			email,
+			password,
+			skills
+		} = this.state
+		const data = {
+			username,
+			password,
+			firstName,
+			lastName,
+			email,
+			skills
+		}
+		try {
+			const req = await signup(data)
+			if (req) {
+				this.setState({ step: this.state.step + 1 })
+			}
+		} catch (error) {
+			throw error
+		}
+	}
+
 	nextStep = () => {
 		this.setState({ step: this.state.step + 1 })
 	}
@@ -55,8 +84,7 @@ export default class CreateAccount extends Component {
 			password,
 			confirmPassword,
 			skill,
-			skills,
-			data
+			skills
 		} = this.state
 		switch (step) {
 			case 1:
@@ -79,10 +107,15 @@ export default class CreateAccount extends Component {
 							value={email}
 							onChangeText={(email) => this.setState({ email })}
 						/>
+
 						<Button
 							title="Next"
 							onPress={this.nextStep}
 							disabled={firstName && lastName && email ? false : true}
+						/>
+						<Button
+							title="Go Back"
+							onPress={() => this.props.navigation.goBack()}
 						/>
 					</LinearGradient>
 				)
@@ -182,8 +215,18 @@ export default class CreateAccount extends Component {
 								)}
 							/>
 						</View>
-						<Button title="Confirm" />
+						<Button title="Confirm" onPress={this.handleSignUp} />
 						<Button title="Go Back" onPress={this.prevStep} />
+					</LinearGradient>
+				)
+			case 5:
+				return (
+					<LinearGradient
+						contentContainerStyle={{ flexGrow: 1 }}
+						colors={['#3E0072', '#AE00E2']}
+						style={styles.gradient}>
+						<Image source={CheckMark} />
+						<Text />
 					</LinearGradient>
 				)
 			default:
