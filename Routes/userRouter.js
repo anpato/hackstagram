@@ -19,23 +19,34 @@ userRouter.get('/:id', async (req, res) => {
 	} catch (error) {}
 })
 
-userRouter.get('/verify/:username', async (req, res) => {
+userRouter.get('/verify/username', async (req, res, next) => {
 	try {
 		const users = await User.findAll()
-		for (let i = 0; i < users.length; i++) {
-			let currentUsers = users[i].username.toLowerCase()
-			let newUser = req.params.username.toLowerCase()
-			try {
-				if (!currentUsers.includes(newUser)) {
-					res.status(200).send({ msg: 'Username available' })
-				} else {
-					return next(error)
-				}
-			} catch (error) {
-				res.status(400).send({ err: 'Username unavailable' })
+		const usernames = []
+		if (users) {
+			for (let i = 0; i < users.length; i++) {
+				usernames.push(users[i].username.toLowerCase())
 			}
 		}
-	} catch (error) {}
+		res.send(usernames)
+	} catch (error) {
+		console.log(error)
+	}
+})
+
+userRouter.get('/verify/email', async (req, res, next) => {
+	try {
+		const users = await User.findAll()
+		const emails = []
+		if (users) {
+			for (let i = 0; i < users.length; i++) {
+				emails.push(users[i].email.toLowerCase())
+			}
+		}
+		res.send(emails)
+	} catch (error) {
+		throw error
+	}
 })
 
 userRouter.get('/skills', async (req, res) => {

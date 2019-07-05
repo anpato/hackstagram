@@ -3,8 +3,9 @@ import { View, Text, FlatList, Image } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Input, Button } from '../src/components/common'
 import { Ionicons } from '@expo/vector-icons'
-import { signup } from '../src/services/apiService'
+import { signup, getUsernames, getEmails } from '../src/services/apiService'
 import CheckMark from '../src/assets/Checkmark.png'
+
 export default class CreateAccount extends Component {
 	constructor() {
 		super()
@@ -18,8 +19,42 @@ export default class CreateAccount extends Component {
 			skill: '',
 			skills: [],
 			data: [],
-			skillsData: [],
+			takenUsernames: [],
+			takenEmails: [],
+			isTaken: false,
 			step: 1
+		}
+	}
+
+	async componentDidMount() {
+		try {
+			const takenUsernames = await getUsernames()
+			const takenEmails = await getEmails()
+			this.setState({ takenUsernames, takenEmails })
+		} catch (error) {
+			throw error
+		}
+	}
+
+	handleCheckUsername = (username) => {
+		const { takenUsernames } = this.state
+		this.setState({ username })
+		if (takenUsernames.includes(username.toLowerCase())) {
+			this.setState({ isTaken: true })
+		}
+		if (!takenUsernames.includes(username.toLowerCase())) {
+			this.setState({ isTaken: false })
+		}
+	}
+
+	handleCheckEmails = (email) => {
+		const { takenEmails } = this.state
+		this.setState({ email })
+		if (takenEmails.includes(email.toLowerCase())) {
+			this.setState({ isTaken: true })
+		}
+		if (!takenEmails.includes(email.toLowerCase())) {
+			this.setState({ isTaken: false })
 		}
 	}
 
@@ -84,7 +119,8 @@ export default class CreateAccount extends Component {
 			password,
 			confirmPassword,
 			skill,
-			skills
+			skills,
+			isTaken
 		} = this.state
 		switch (step) {
 			case 1:
@@ -105,13 +141,23 @@ export default class CreateAccount extends Component {
 						<Input
 							placeholder="Email"
 							value={email}
-							onChangeText={(email) => this.setState({ email })}
+							email={true}
+							error={isTaken}
+							onChangeText={(email) => this.handleCheckEmails(email)}
 						/>
 
 						<Button
 							title="Next"
 							onPress={this.nextStep}
-							disabled={firstName && lastName && email ? false : true}
+							disabled={
+								firstName &&
+								lastName &&
+								email &&
+								email.includes('@') &&
+								isTaken !== true
+									? false
+									: true
+							}
 						/>
 						<Button
 							title="Go Back"
@@ -127,7 +173,9 @@ export default class CreateAccount extends Component {
 						<Input
 							placeholder="Joe_Sho"
 							value={username}
-							onChangeText={(username) => this.setState({ username })}
+							username={true}
+							onChangeText={(username) => this.handleCheckUsername(username)}
+							error={isTaken}
 						/>
 						<Input
 							secureTextEntry={true}
@@ -146,7 +194,14 @@ export default class CreateAccount extends Component {
 						<Button
 							title="Next"
 							onPress={this.nextStep}
-							disabled={username && password === confirmPassword ? false : true}
+							disabled={
+								username &&
+								password &&
+								password === confirmPassword &&
+								isTaken !== true
+									? false
+									: true
+							}
 						/>
 						<Button title="Back" onPress={this.prevStep} />
 					</LinearGradient>
