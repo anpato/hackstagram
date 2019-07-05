@@ -4,7 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { Input, Button } from '../src/components/common'
 import { Ionicons } from '@expo/vector-icons'
 import { signup } from '../src/services/apiService'
-import CheckMark from '../assets/Checkmark.png'
+import CheckMark from '../src/assets/Checkmark.png'
 export default class CreateAccount extends Component {
 	constructor() {
 		super()

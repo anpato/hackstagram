@@ -1,6 +1,7 @@
 const Axios = require('axios')
+import { IP_ADDRESS } from 'react-native-dotenv'
 const JwtToken = 'token'
-const BASE_URL = 'http://192.168.2.7:3001'
+const BASE_URL = `http://${IP_ADDRESS}:3001`
 
 const api = Axios.create({
 	baseURL: BASE_URL,

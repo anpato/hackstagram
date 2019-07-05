@@ -1,9 +1,9 @@
 const express = require('express')
-const UserRoute = express.Router()
+const userRouter = express.Router()
 const bcrypt = require('bcrypt')
-const { User, Post, Bookmark } = require('../database/models')
+const { User } = require('../database/models')
 
-UserRoute.get('/', async (req, res) => {
+userRouter.get('/', async (req, res) => {
 	try {
 		const users = await User.findAll()
 		res.send(users)
@@ -12,14 +12,14 @@ UserRoute.get('/', async (req, res) => {
 	}
 })
 
-UserRoute.get('/:id', async (req, res) => {
+userRouter.get('/:id', async (req, res) => {
 	try {
 		const users = await User.findByPk(req.params.id)
 		res.send(users)
 	} catch (error) {}
 })
 
-UserRoute.get('/:id/posts', async (req, res) => {
+userRouter.get('/:id/posts', async (req, res) => {
 	try {
 		const userPosts = await User.findAll({
 			include: [{ model: Post }],
@@ -32,7 +32,7 @@ UserRoute.get('/:id/posts', async (req, res) => {
 	}
 })
 
-UserRoute.get('/users/name/:username', async (req, res) => {
+userRouter.get('/users/name/:username', async (req, res) => {
 	try {
 		const users = await User.findAll({
 			where: {
@@ -45,7 +45,7 @@ UserRoute.get('/users/name/:username', async (req, res) => {
 	}
 })
 
-UserRoute.get('/skills', async (req, res) => {
+userRouter.get('/skills', async (req, res) => {
 	try {
 		const findUser = await User.findAll()
 		let userArr = []
@@ -63,7 +63,7 @@ UserRoute.get('/skills', async (req, res) => {
 	}
 })
 
-UserRoute.get('/:id/suggested', async (req, res) => {
+userRouter.get('/:id/suggested', async (req, res) => {
 	try {
 		const findUser = await User.findByPk(req.params.id)
 		const findUsers = await User.findAll()
@@ -90,7 +90,7 @@ UserRoute.get('/:id/suggested', async (req, res) => {
 	}
 })
 
-UserRoute.put('/update/:id', async (req, res) => {
+userRouter.put('/update/:id', async (req, res) => {
 	try {
 		const user = await User.findByPk(req.params.id)
 		await User.beforeUpdate(bcrypt.hash(req.body.password, 12))
@@ -115,4 +115,4 @@ UserRoute.put('/update/:id', async (req, res) => {
 	}
 })
 
-module.exports = UserRoute
+module.exports = userRouter

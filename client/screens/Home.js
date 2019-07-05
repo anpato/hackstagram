@@ -2,6 +2,8 @@ import React from 'react'
 import { View, Text } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Button } from '../src/components/common'
+import { IP_ADDRESS } from 'react-native-dotenv'
+console.log(IP_ADDRESS)
 export default function Home({ navigation: { navigate } }) {
 	return (
 		<View style={styles.container}>
