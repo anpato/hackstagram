@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList, Image } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
-import { Input, Button } from '../src/components/common'
-import { Ionicons } from '@expo/vector-icons'
+import { Input, Button, AccountCreated } from '../src/components/common'
 import { signup, getUsernames, getEmails } from '../src/services/apiService'
-import CheckMark from '../src/assets/Checkmark.png'
 
 export default class CreateAccount extends Component {
 	constructor() {
@@ -22,7 +20,8 @@ export default class CreateAccount extends Component {
 			takenUsernames: [],
 			takenEmails: [],
 			isTaken: false,
-			step: 1
+			step: 1,
+			timer: 10
 		}
 	}
 
@@ -75,6 +74,12 @@ export default class CreateAccount extends Component {
 		})
 	}
 
+	handleTimer = () => {
+		setInterval(() => {
+			this.setState({ timer: this.state.timer - 1 })
+		}, 1000)
+	}
+
 	handleSignUp = async () => {
 		const {
 			username,
@@ -96,6 +101,7 @@ export default class CreateAccount extends Component {
 			const req = await signup(data)
 			if (req) {
 				this.setState({ step: this.state.step + 1 })
+				this.handleTimer()
 			}
 		} catch (error) {
 			throw error
@@ -145,7 +151,6 @@ export default class CreateAccount extends Component {
 							error={isTaken}
 							onChangeText={(email) => this.handleCheckEmails(email)}
 						/>
-
 						<Button
 							title="Next"
 							onPress={this.nextStep}
@@ -153,7 +158,7 @@ export default class CreateAccount extends Component {
 								firstName &&
 								lastName &&
 								email &&
-								email.includes('@') &&
+								email.includes(('@' && '.com') || '.net' || '.dev' || '.io') &&
 								isTaken !== true
 									? false
 									: true
@@ -276,13 +281,10 @@ export default class CreateAccount extends Component {
 				)
 			case 5:
 				return (
-					<LinearGradient
-						contentContainerStyle={{ flexGrow: 1 }}
-						colors={['#3E0072', '#AE00E2']}
-						style={styles.gradient}>
-						<Image source={CheckMark} />
-						<Text />
-					</LinearGradient>
+					<AccountCreated
+						timer={this.state.timer}
+						navigation={this.props.navigation}
+					/>
 				)
 			default:
 				return <View />
