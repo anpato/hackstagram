@@ -20,6 +20,17 @@ export const signup = async (data) => {
 	}
 }
 
+export const login = async (data) => {
+	console.log(data)
+	try {
+		const req = await api.post('/auth/login', data)
+		console.log(req)
+		return req.data.token
+	} catch (error) {
+		throw error
+	}
+}
+
 export const getUsernames = async () => {
 	try {
 		const req = await api.get('/users/verify/username')
