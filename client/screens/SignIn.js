@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, AsyncStorage } from 'react-native'
 import { Input, Button } from '../src/components/common'
 import { LinearGradient } from 'expo-linear-gradient'
 import { login } from '../src/services/apiService'
@@ -27,6 +27,7 @@ export default class SignIn extends Component {
 		try {
 			const token = await login(user)
 			if (token) {
+				await AsyncStorage.setItem('token', token)
 				this.setState({ token })
 			}
 		} catch (error) {
