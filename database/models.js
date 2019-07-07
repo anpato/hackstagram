@@ -41,9 +41,25 @@ const User = db.define('user', {
 	},
 	skills: {
 		type: Sequelize.ARRAY(Sequelize.STRING)
+	}
+})
+
+const Follower = db.define('follower', {
+	userId: {
+		type: Sequelize.INTEGER,
+		allowNull: true,
+		referenceces: {
+			model: 'user',
+			key: 'userId'
+		}
 	},
-	followers: {
-		type: Sequelize.ARRAY(Sequelize.INTEGER)
+	followerId: {
+		type: Sequelize.INTEGER,
+		allowNull: true,
+		referenceces: {
+			model: 'user',
+			key: 'userId'
+		}
 	}
 })
 
@@ -87,6 +103,9 @@ User.hasMany(PostLike, { onDelete: 'cascade' })
 User.hasMany(Comment, { onDelete: 'cascade' })
 User.hasMany(CommentLike, { onDelete: 'cascade' })
 
+Follower.belongsTo(User)
+Follower.hasMany(User)
+
 Post.belongsTo(User)
 Post.hasMany(Comment)
 Post.hasMany(PostLike)
@@ -101,11 +120,14 @@ Comment.hasMany(CommentLike)
 CommentLike.belongsTo(Comment)
 CommentLike.belongsTo(User)
 
+Follower.belongsTo(User)
+
 module.exports = {
 	User,
 	Comment,
 	CommentLike,
 	Post,
 	PostLike,
+	Follower,
 	db
 }

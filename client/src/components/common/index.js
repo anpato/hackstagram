@@ -1,3 +1,4 @@
 export * from './Button'
 export * from './Input'
 export * from './AccountCreated'
+export * from './SettingsIcon'

@@ -1,7 +1,7 @@
 const express = require('express')
 const userRouter = express.Router()
 const bcrypt = require('bcrypt')
-const { User } = require('../database/models')
+const { User, Follower } = require('../database/models')
 
 userRouter.get('/', async (req, res) => {
 	try {
@@ -14,7 +14,9 @@ userRouter.get('/', async (req, res) => {
 
 userRouter.get('/:id', async (req, res) => {
 	try {
-		const users = await User.findByPk(req.params.id)
+		const users = await User.findByPk(req.params.id, {
+			include: [Follower]
+		})
 		res.send(users)
 	} catch (error) {}
 })
@@ -44,6 +46,52 @@ userRouter.get('/verify/email', async (req, res, next) => {
 			}
 		}
 		res.send(emails)
+	} catch (error) {
+		throw error
+	}
+})
+
+userRouter.get('/:user_id/followers', async (req, res) => {
+	try {
+		const user = await Follower.findAll({
+			// where: {
+			// 	followingId: req.params.user_id
+			// },
+			// attributes: ['userId', 'followingId'],
+			// include: [
+			// 	{
+			// 		model: User,
+			// 		as: 'follower'
+			// 	}
+			// {
+			// 	model: Follower,
+			// 	attributes: [['followingId', 'isFollowing']],
+			// 	as: 'following'
+			// }
+			// ]
+		})
+		res.send(user)
+	} catch (error) {
+		console.log(error)
+	}
+})
+
+userRouter.post('/:user_id/follow/', async (req, res) => {
+	try {
+		const user = await User.findByPk(req.params.user_id)
+		const follower = await User.findByPk(req.params.follower_id)
+		if (user) {
+			const follow = await Follower.findOrCreate({
+				where: {
+					user_id: req.params.user_id,
+					follower_id: req.body.follow
+				}
+			})
+			await follow.setFollower(follower)
+			await follow.setUser(user)
+			res.send(follow)
+		}
+		// res.send(user)
 	} catch (error) {
 		throw error
 	}

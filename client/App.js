@@ -4,8 +4,7 @@ import {
 	createStackNavigator,
 	createAppContainer,
 	createBottomTabNavigator,
-	createSwitchNavigator,
-	NavigationContext
+	createSwitchNavigator
 } from 'react-navigation'
 import Home from './screens/Home'
 import CreateAccount from './screens/CreateAccount'
@@ -14,6 +13,7 @@ import Posts from './screens/Posts'
 import Profile from './screens/Profile'
 import { Ionicons } from '@expo/vector-icons'
 import Search from './screens/Search'
+import Settings from './screens/Settings'
 
 const styles = {
 	iconCamera: {
@@ -35,6 +35,32 @@ const AppNavigator = createStackNavigator(
 		headerMode: 'none',
 		navigationOptions: {
 			headerVisible: false
+		}
+	}
+)
+
+const SettingsStack = createStackNavigator(
+	{
+		Settings: Settings
+	},
+	{
+		defaultNavigationOptions: {
+			title: 'App',
+			headerStyle: {
+				shadowColor: '#000',
+				shadowOffset: { width: 0, height: 1 },
+				shadowOpacity: 0.3
+			},
+			headerLeft: (
+				<TouchableOpacity>
+					<Ionicons name="ios-camera" size={32} style={styles.iconCamera} />
+				</TouchableOpacity>
+			),
+			headerRight: (
+				<TouchableOpacity>
+					<Ionicons name="ios-settings" size={32} style={styles.iconSettings} />
+				</TouchableOpacity>
+			)
 		}
 	}
 )
@@ -150,6 +176,7 @@ const TabNavigator = createBottomTabNavigator(
 export default createAppContainer(
 	createSwitchNavigator({
 		App: AppNavigator,
-		Auth: TabNavigator
+		Auth: TabNavigator,
+		Settings: SettingsStack
 	})
 )
