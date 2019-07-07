@@ -44,25 +44,6 @@ const User = db.define('user', {
 	}
 })
 
-const Follower = db.define('follower', {
-	userId: {
-		type: Sequelize.INTEGER,
-		allowNull: true,
-		referenceces: {
-			model: 'user',
-			key: 'userId'
-		}
-	},
-	followerId: {
-		type: Sequelize.INTEGER,
-		allowNull: true,
-		referenceces: {
-			model: 'user',
-			key: 'userId'
-		}
-	}
-})
-
 const Post = db.define('post', {
 	title: {
 		type: Sequelize.STRING
@@ -98,13 +79,22 @@ User.beforeCreate(async (user, options) => {
 	user.password = hashedPassword
 })
 
+User.belongsToMany(User, {
+	as: 'follower',
+	through: 'follow',
+	foreignKey: 'follower_id'
+})
+
+User.belongsToMany(User, {
+	as: 'following',
+	through: 'follow',
+	foreignKey: 'following_id'
+})
+
 User.hasMany(Post, { onDelete: 'cascade' })
 User.hasMany(PostLike, { onDelete: 'cascade' })
 User.hasMany(Comment, { onDelete: 'cascade' })
 User.hasMany(CommentLike, { onDelete: 'cascade' })
-
-Follower.belongsTo(User)
-Follower.hasMany(User)
 
 Post.belongsTo(User)
 Post.hasMany(Comment)
@@ -120,14 +110,11 @@ Comment.hasMany(CommentLike)
 CommentLike.belongsTo(Comment)
 CommentLike.belongsTo(User)
 
-Follower.belongsTo(User)
-
 module.exports = {
 	User,
 	Comment,
 	CommentLike,
 	Post,
 	PostLike,
-	Follower,
 	db
 }
