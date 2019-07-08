@@ -53,45 +53,45 @@ userRouter.get('/verify/email', async (req, res, next) => {
 
 userRouter.get('/:user_id/followers', async (req, res) => {
 	try {
-		const user = await Follower.findAll({
-			// where: {
-			// 	followingId: req.params.user_id
-			// },
-			// attributes: ['userId', 'followingId'],
-			// include: [
-			// 	{
-			// 		model: User,
-			// 		as: 'follower'
-			// 	}
-			// {
-			// 	model: Follower,
-			// 	attributes: [['followingId', 'isFollowing']],
-			// 	as: 'following'
-			// }
-			// ]
+		const user = await User.findOne({
+			where: {
+				id: req.params.user_id
+			},
+			include: [
+				{
+					model: Follower,
+					as: 'followers',
+					include: [
+						{
+							model: User,
+							as: 'user'
+						}
+					]
+				}
+			]
 		})
 		res.send(user)
 	} catch (error) {
-		console.log(error)
+		throw error
 	}
 })
 
-userRouter.post('/:user_id/follow/', async (req, res) => {
+userRouter.post('/:user_id/follow/:follower_id', async (req, res) => {
 	try {
 		const user = await User.findByPk(req.params.user_id)
-		const follower = await User.findByPk(req.params.follower_id)
 		if (user) {
-			const follow = await Follower.findOrCreate({
-				where: {
-					user_id: req.params.user_id,
-					follower_id: req.body.follow
-				}
-			})
-			await follow.setFollower(follower)
-			await follow.setUser(user)
-			res.send(follow)
+			if (user.id.toString() === req.params.follower_id) {
+				res.status(400).json({ err: 'You cannot follow yourself' })
+			} else {
+				const following = await Follower.findOrCreate({
+					where: {
+						userId: req.params.user_id,
+						follower_id: req.params.follower_id
+					}
+				})
+				res.send(following)
+			}
 		}
-		// res.send(user)
 	} catch (error) {
 		throw error
 	}
@@ -108,7 +108,6 @@ userRouter.get('/skills', async (req, res) => {
 				}
 			}
 		}
-		console.log(userArr)
 		res.send(userArr)
 	} catch (error) {
 		throw error
