@@ -1,7 +1,7 @@
 const express = require('express')
 const userRouter = express.Router()
 const bcrypt = require('bcrypt')
-const { User, Follower } = require('../database/models')
+const { User, Follower, Post } = require('../database/models')
 
 userRouter.get('/', async (req, res) => {
 	try {
@@ -15,7 +15,22 @@ userRouter.get('/', async (req, res) => {
 userRouter.get('/:id', async (req, res) => {
 	try {
 		const users = await User.findByPk(req.params.id, {
-			include: [Follower]
+			include: [
+				{
+					model: Post
+				},
+				{
+					model: Follower,
+					as: 'followers',
+					include: [
+						{
+							model: User,
+							as: 'user'
+						}
+					]
+				}
+			]
+			// include: [Post]
 		})
 		res.send(users)
 	} catch (error) {}
@@ -32,7 +47,7 @@ userRouter.get('/verify/username', async (req, res, next) => {
 		}
 		res.send(usernames)
 	} catch (error) {
-		console.log(error)
+		throw error
 	}
 })
 

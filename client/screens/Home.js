@@ -23,6 +23,9 @@ export default class Home extends Component {
 	}
 
 	render() {
+		const {
+			navigation: { navigate }
+		} = this.props
 		return (
 			<View style={styles.container}>
 				<LinearGradient colors={['#3E0072', '#AE00E2']} style={styles.gradient}>
