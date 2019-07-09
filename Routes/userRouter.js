@@ -30,40 +30,9 @@ userRouter.get('/:id', async (req, res) => {
 					]
 				}
 			]
-			// include: [Post]
 		})
 		res.send(users)
 	} catch (error) {}
-})
-
-userRouter.get('/verify/username', async (req, res, next) => {
-	try {
-		const users = await User.findAll()
-		const usernames = []
-		if (users) {
-			for (let i = 0; i < users.length; i++) {
-				usernames.push(users[i].username.toLowerCase())
-			}
-		}
-		res.send(usernames)
-	} catch (error) {
-		throw error
-	}
-})
-
-userRouter.get('/verify/email', async (req, res, next) => {
-	try {
-		const users = await User.findAll()
-		const emails = []
-		if (users) {
-			for (let i = 0; i < users.length; i++) {
-				emails.push(users[i].email.toLowerCase())
-			}
-		}
-		res.send(emails)
-	} catch (error) {
-		throw error
-	}
 })
 
 userRouter.get('/:user_id/followers', async (req, res) => {
@@ -111,15 +80,21 @@ userRouter.post('/:user_id/follow/:follower_id', async (req, res) => {
 		throw error
 	}
 })
-
-userRouter.get('/skills', async (req, res) => {
+// Does this route make sense as a search route, take in a skill
+userRouter.get('/search/skills', async (req, res) => {
 	try {
 		const findUser = await User.findAll()
 		let userArr = []
 		if (findUser) {
 			for (let i = 0; i < findUser.length; i++) {
-				if (findUser[i].skills.includes(req.body.skills)) {
-					arr.push(findUser[i])
+				for (let j = 0; j < findUser[i].skills.length; j++) {
+					if (
+						findUser[i].skills[j]
+							.toLowerCase()
+							.includes(req.body.skills.toLowerCase())
+					) {
+						userArr.push(findUser[i])
+					}
 				}
 			}
 		}
