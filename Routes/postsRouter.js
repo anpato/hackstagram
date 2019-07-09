@@ -38,7 +38,7 @@ postsRouter.get('/:post_id/comments', async (req, res) => {
 	}
 })
 
-postsRouter.post('/:user_id', async (req, res) => {
+postsRouter.post('/upload/user/:user_id', async (req, res) => {
 	try {
 		const user = await User.findByPk(req.params.user_id)
 		if (user) {
