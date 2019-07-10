@@ -63,18 +63,9 @@ const main = async () => {
 	})
 
 	async function setUsertoPost() {
-		const users = []
-		const posts = []
 		for (let i = 0; i < fakeUserData.length; i++) {
-			users.push(fakeUserData[i])
-		}
-		for (let j = 0; j < fakePostData.length; j++) {
-			posts.push(fakePostData[j])
-		}
-
-		for (let l = 0; l < users.length; l++) {
-			for (let e = 0; e < posts.length; e++) {
-				await users[l].addPost(posts[e])
+			for (let j = 0; j < fakePostData.length; j++) {
+				await fakeUserData[i].addPost(fakePostData[j])
 			}
 		}
 	}

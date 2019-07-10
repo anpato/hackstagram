@@ -9,7 +9,6 @@ const ProfileDetails = ({
 	following,
 	posts
 }) => {
-	console.log(profileImage)
 	const measureFollowers = () => {
 		if (!followers || !following) {
 			return (

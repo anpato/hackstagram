@@ -86,6 +86,28 @@ userRouter.get('/search/skills', async (req, res) => {
 	}
 })
 
+userRouter.post('/:user_id/follow/', async (req, res) => {
+	try {
+		const ids = []
+		const users = await User.findAll()
+		for (let i = 0; i < users.length; i++) {
+			ids.push(users[i].id)
+		}
+		const user = await User.findByPk(req.params.user_id)
+		if (user) {
+			const following = await Follower.findOrCreate({
+				where: {
+					userId: req.params.user_id,
+					follower_id: Math.floor(Math.random() * ids.length)
+				}
+			})
+			res.send(following)
+		}
+	} catch (error) {
+		throw error
+	}
+})
+
 userRouter.get('/:id/suggested', async (req, res) => {
 	try {
 		const findUser = await User.findByPk(req.params.id)

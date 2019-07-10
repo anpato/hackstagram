@@ -2,13 +2,18 @@ import React, { Component } from 'react'
 import { ScrollView, Text, AsyncStorage, RefreshControl } from 'react-native'
 import ProfileDetails from '../src/components/ProfileDetails'
 import { Button, Spinner } from '../src/components/common'
-import { getUser, getFollowersAmount } from '../src/services/apiService'
+import {
+	getUser,
+	getFollowersAmount,
+	getUserPost
+} from '../src/services/apiService'
 export default class Profile extends Component {
 	constructor() {
 		super()
 		this.state = {
 			userData: [],
 			followers: [],
+			posts: [],
 			refreshing: false
 		}
 	}
@@ -24,7 +29,9 @@ export default class Profile extends Component {
 		const user = JSON.parse(data)
 		const userData = await getUser(user.id)
 		const followers = await getFollowersAmount(user.id)
-		this.setState({ userData, followers })
+		const posts = await getUserPost(user.id)
+		console.log(posts)
+		this.setState({ userData, followers, posts })
 	}
 
 	handleRefresh = async () => {
