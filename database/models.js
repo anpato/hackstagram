@@ -46,7 +46,6 @@ const User = db.define('user', {
 
 const Follower = db.define('follower', {
 	follower_id: {
-		primaryKey: true,
 		type: Sequelize.INTEGER
 	}
 })
@@ -88,7 +87,7 @@ User.beforeCreate(async (user, options) => {
 
 Follower.belongsTo(User, {
 	as: 'user',
-	through: 'follower',
+	through: 'following',
 	foreignKey: 'follower_id'
 })
 
@@ -96,7 +95,7 @@ User.hasMany(Post, { onDelete: 'cascade' })
 User.hasMany(PostLike, { onDelete: 'cascade' })
 User.hasMany(Comment, { onDelete: 'cascade' })
 User.hasMany(CommentLike, { onDelete: 'cascade' })
-User.hasMany(Follower, { as: 'followers' })
+User.hasMany(Follower, { as: 'following' })
 Post.belongsTo(User)
 Post.hasMany(Comment)
 Post.hasMany(PostLike)

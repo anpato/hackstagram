@@ -14,25 +14,52 @@ userRouter.get('/', async (req, res) => {
 
 userRouter.get('/:id', async (req, res) => {
 	try {
-		const users = await User.findByPk(req.params.id, {
+		const user = await User.findOne({
+			where: {
+				id: req.params.id
+			},
 			include: [
 				{
-					model: Post
-				},
-				{
 					model: Follower,
-					as: 'followers',
+					as: 'following',
 					include: [
 						{
 							model: User,
-							as: 'user'
+							as: 'user',
+							include: [
+								{
+									model: Follower,
+									as: 'following'
+								}
+							]
 						}
 					]
 				}
 			]
 		})
-		res.send(users)
-	} catch (error) {}
+		if (user) {
+			const checkFollowersLength = []
+			for (let i = 0; i < user.following.length; i++) {
+				const {
+					dataValues: {
+						user: {
+							dataValues: { following }
+						}
+					}
+				} = user.following[i]
+				if (following) {
+					for (let j = 0; j < following.length; j++) {
+						if (following[j].follower_id === parseInt(req.params.id)) {
+							checkFollowersLength.push(following[j])
+						}
+					}
+				}
+			}
+			res.send({ user, checkFollowersLength })
+		}
+	} catch (error) {
+		throw error
+	}
 })
 
 userRouter.get('/:user_id/followers', async (req, res) => {
@@ -44,11 +71,12 @@ userRouter.get('/:user_id/followers', async (req, res) => {
 			include: [
 				{
 					model: Follower,
-					as: 'followers',
+					as: 'following',
 					include: [
 						{
 							model: User,
-							as: 'user'
+							as: 'user',
+							include: [Post]
 						}
 					]
 				}
