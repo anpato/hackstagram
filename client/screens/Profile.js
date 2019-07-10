@@ -1,37 +1,50 @@
 import React, { Component } from 'react'
-import { ScrollView, Text, AsyncStorage } from 'react-native'
+import { ScrollView, Text, AsyncStorage, RefreshControl } from 'react-native'
 import ProfileDetails from '../src/components/ProfileDetails'
 import { Button, Spinner } from '../src/components/common'
-import { getUser } from '../src/services/apiService'
+import { getUser, getFollowersAmount } from '../src/services/apiService'
 export default class Profile extends Component {
 	constructor() {
 		super()
 		this.state = {
-			userData: []
+			userData: [],
+			followers: [],
+			refreshing: false
 		}
 	}
 
 	async componentDidMount() {
 		try {
-			await AsyncStorage.getItem('user')
-				.then((resp) => JSON.parse(resp))
-				.then((data) => this.fetchUserProfile(data.id))
+			await this.fetchUserProfile()
 		} catch (error) {}
 	}
 
-	fetchUserProfile = async (id) => {
-		const userData = await getUser(id)
-		this.setState({ userData })
+	fetchUserProfile = async () => {
+		const data = await AsyncStorage.getItem('user')
+		const user = JSON.parse(data)
+		const userData = await getUser(user.id)
+		const followers = await getFollowersAmount(user.id)
+		this.setState({ userData, followers })
+	}
+
+	handleRefresh = async () => {
+		this.setState({ refreshing: true })
+		await this.fetchUserProfile()
+		this.setState({ refreshing: false })
 	}
 
 	renderUserData = () => {
-		const { userData } = this.state
+		const { userData, followers } = this.state
+
 		if (userData) {
-			console.log(userData.followers)
 			return (
 				<ProfileDetails
+					userId={userData.id}
 					username={userData.username}
-					followers={userData.followers}
+					profileImage={userData.profileImage}
+					followers={followers[0]}
+					following={followers[1]}
+					posts={userData.posts}
 				/>
 			)
 		} else {
@@ -45,7 +58,14 @@ export default class Profile extends Component {
 	}
 	render() {
 		return (
-			<ScrollView contentContainerStyle={styles.container}>
+			<ScrollView
+				contentContainerStyle={styles.container}
+				refreshControl={
+					<RefreshControl
+						refreshing={this.state.refreshing}
+						onRefresh={this.handleRefresh}
+					/>
+				}>
 				{this.renderUserData()}
 				<Button onPress={this.logout}>
 					<Text>Log Out </Text>

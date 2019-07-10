@@ -1,5 +1,6 @@
 const { Sequelize } = require('sequelize')
 const bcrypt = require('bcrypt')
+const { fakeUsers } = require('./fakeUsers')
 const db = new Sequelize(
 	process.env.DATABASE_URL || 'postgres://localhost:5432/hackstagram',
 	{
@@ -78,6 +79,14 @@ const CommentLike = db.define('commentLike', {
 	likes: {
 		type: Sequelize.INTEGER
 	}
+})
+
+User.beforeBulkCreate(async (user, options) => {
+	for (let i = 0; i < user.length; i++) {
+		const hashedPassword = await bcrypt.hash(user[i].password, 12)
+		user[i].password = hashedPassword
+	}
+	return user
 })
 
 User.beforeCreate(async (user, options) => {

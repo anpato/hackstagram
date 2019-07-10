@@ -6,6 +6,8 @@ const {
 	CommentLike,
 	Follower
 } = require('./models')
+const { fakeUsers } = require('./fakeUsers')
+const { fakePosts } = require('./fakePosts')
 
 const main = async () => {
 	await User.destroy({ where: {} })
@@ -15,6 +17,8 @@ const main = async () => {
 	await CommentLike.destroy({ where: {} })
 
 	// Seed Data
+	const fakeUserData = await User.bulkCreate(fakeUsers, { returning: true })
+	const fakePostData = await Post.bulkCreate(fakePosts, { returning: true })
 	const user = await User.create({
 		firstName: 'John',
 		lastName: 'Smith',
@@ -57,6 +61,24 @@ const main = async () => {
 	const likeComment = await CommentLike.create({
 		likes: 4
 	})
+
+	async function setUsertoPost() {
+		const users = []
+		const posts = []
+		for (let i = 0; i < fakeUserData.length; i++) {
+			users.push(fakeUserData[i])
+		}
+		for (let j = 0; j < fakePostData.length; j++) {
+			posts.push(fakePostData[j])
+		}
+
+		for (let l = 0; l < users.length; l++) {
+			for (let e = 0; e < posts.length; e++) {
+				await users[l].addPost(posts[e])
+			}
+		}
+	}
+	await setUsertoPost()
 
 	await user.addPost(post)
 	await user.addComment(comment)

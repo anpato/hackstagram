@@ -25,12 +25,18 @@ userRouter.get('/:id', async (req, res) => {
 
 userRouter.get('/:user_id/followers', async (req, res) => {
 	try {
-		const user = await Follower.findAll({
+		const userFollowers = await Follower.findAll({
 			where: {
 				follower_id: req.params.user_id
 			}
 		})
-		res.send(user)
+
+		const userFollowing = await Follower.findAll({
+			where: {
+				user_id: req.params.user_id
+			}
+		})
+		res.send([userFollowers, userFollowing])
 	} catch (error) {
 		throw error
 	}
