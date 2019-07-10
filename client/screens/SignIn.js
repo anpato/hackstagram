@@ -25,10 +25,11 @@ export default class SignIn extends Component {
 			password: password
 		}
 		try {
-			const token = await login(user)
-			if (token) {
-				await AsyncStorage.setItem('token', token)
-				this.setState({ token })
+			const userData = await login(user)
+			if (userData) {
+				const userItems = { token: userData.token, id: userData.user.id }
+				await AsyncStorage.setItem('user', JSON.stringify(userItems))
+				this.setState({ token: userData.token })
 			}
 		} catch (error) {
 			throw error
@@ -58,6 +59,10 @@ export default class SignIn extends Component {
 						onChangeText={(password) => this.setState({ password })}
 					/>
 					<Button title="Sign In" onPress={this.handleSignIn} />
+					<Button
+						title="Go Back"
+						onPress={() => this.props.navigation.goBack()}
+					/>
 				</View>
 			</LinearGradient>
 		)

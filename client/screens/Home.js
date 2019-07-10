@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, AsyncStorage } from 'react-native'
+import { View, AsyncStorage } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Button } from '../src/components/common'
-import { IP_ADDRESS } from 'react-native-dotenv'
-console.log(IP_ADDRESS)
 
 export default class Home extends Component {
 	async componentDidMount() {
@@ -15,11 +13,15 @@ export default class Home extends Component {
 	}
 	getToken = async () => {
 		try {
-			const token = await AsyncStorage.getItem('token')
+			const userData = await AsyncStorage.getItem('user')
+			const items = JSON.parse(userData)
+			const { token } = items
 			if (token) {
 				this.props.navigation.navigate('Auth')
 			}
-		} catch (error) {}
+		} catch (error) {
+			throw error
+		}
 	}
 
 	render() {

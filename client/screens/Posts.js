@@ -1,14 +1,58 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, AsyncStorage } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
+import { Spinner } from '../src/components/common'
 export default class Posts extends Component {
-	// static navigationOptions = {
-	// 	title: 'Posts'
-	// }
+	constructor() {
+		super()
+		this.state = {
+			userId: null,
+			isAuthenticated: false
+		}
+	}
+	async componentDidMount() {
+		try {
+			await this.getUserId()
+			await this.getUserToken()
+		} catch (error) {
+			throw error
+		}
+	}
+
+	getUserToken = async () => {
+		try {
+			const getItems = await AsyncStorage.getItem('user')
+			const userData = JSON.parse(getItems)
+			if (userData) {
+				this.setState({ isAuthenticated: true })
+			}
+		} catch (error) {
+			throw error
+		}
+	}
+
+	getUserId = async () => {
+		try {
+			const getItems = await AsyncStorage.getItem('user')
+			const userData = JSON.parse(getItems)
+			this.setState({ userId: userData.id })
+		} catch (error) {
+			throw error
+		}
+	}
+
+	renderPostScreen = () => {
+		if (this.state.isAuthenticated === true) {
+			return <Text>POsts</Text>
+		} else {
+			return <Spinner />
+		}
+	}
+
 	render() {
 		return (
 			<ScrollView contentContainerStyle={styles.container}>
-				<Text>POsts</Text>
+				{this.renderPostScreen()}
 			</ScrollView>
 		)
 	}

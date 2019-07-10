@@ -145,7 +145,7 @@ const PostStack = createStackNavigator(
 
 const TabNavigator = createBottomTabNavigator(
 	{
-		Home: PostStack,
+		Post: PostStack,
 		Search: SearchStack,
 		Profile: ProfileStack
 	},
@@ -155,7 +155,7 @@ const TabNavigator = createBottomTabNavigator(
 				const { routeName } = navigation.state
 				let IconComponent = Ionicons
 				let iconName
-				if (routeName === 'Home') {
+				if (routeName === 'Post') {
 					iconName = `ios-home${focused ? '' : ''}`
 				} else if (routeName === 'Profile') {
 					iconName = `ios-person${focused ? '' : ''}`

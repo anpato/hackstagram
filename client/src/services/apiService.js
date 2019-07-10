@@ -21,11 +21,9 @@ export const signup = async (data) => {
 }
 
 export const login = async (data) => {
-	console.log(data)
 	try {
 		const req = await api.post('/auth/login', data)
-		console.log(req)
-		return req.data.token
+		return req.data
 	} catch (error) {
 		throw error
 	}
@@ -44,6 +42,15 @@ export const getEmails = async () => {
 	try {
 		const req = await api.get('/users/verify/email')
 		return req.data
+	} catch (error) {
+		throw error
+	}
+}
+
+export const getUser = async (id) => {
+	try {
+		const resp = await api.get(`/users/${id}`)
+		return resp.data
 	} catch (error) {
 		throw error
 	}
