@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, AsyncStorage } from 'react-native'
 import {
 	createStackNavigator,
 	createAppContainer,
@@ -15,16 +15,6 @@ import { Ionicons } from '@expo/vector-icons'
 import Search from './screens/Search'
 import Settings from './screens/Settings'
 
-const styles = {
-	iconCamera: {
-		marginLeft: 20,
-		color: '#AE00E2'
-	},
-	iconSettings: {
-		marginRight: 20,
-		color: '#AE00E2'
-	}
-}
 const AppNavigator = createStackNavigator(
 	{
 		Home: Home,
@@ -44,23 +34,9 @@ const SettingsStack = createStackNavigator(
 		Settings: Settings
 	},
 	{
-		defaultNavigationOptions: {
-			title: 'App',
-			headerStyle: {
-				shadowColor: '#000',
-				shadowOffset: { width: 0, height: 1 },
-				shadowOpacity: 0.3
-			},
-			headerLeft: (
-				<TouchableOpacity>
-					<Ionicons name="ios-camera" size={32} style={styles.iconCamera} />
-				</TouchableOpacity>
-			),
-			headerRight: (
-				<TouchableOpacity>
-					<Ionicons name="ios-settings" size={32} style={styles.iconSettings} />
-				</TouchableOpacity>
-			)
+		headerMode: 'none',
+		navigationOptions: {
+			headerVisible: false
 		}
 	}
 )
@@ -70,23 +46,9 @@ const ProfileStack = createStackNavigator(
 		Profile: Profile
 	},
 	{
-		defaultNavigationOptions: {
-			title: 'App',
-			headerStyle: {
-				shadowColor: '#000',
-				shadowOffset: { width: 0, height: 1 },
-				shadowOpacity: 0.3
-			},
-			headerLeft: (
-				<TouchableOpacity>
-					<Ionicons name="ios-camera" size={32} style={styles.iconCamera} />
-				</TouchableOpacity>
-			),
-			headerRight: (
-				<TouchableOpacity>
-					<Ionicons name="ios-settings" size={32} style={styles.iconSettings} />
-				</TouchableOpacity>
-			)
+		headerMode: 'none',
+		navigationOptions: {
+			headerVisible: false
 		}
 	}
 )
@@ -96,23 +58,9 @@ const SearchStack = createStackNavigator(
 		Search: Search
 	},
 	{
-		defaultNavigationOptions: {
-			title: 'App',
-			headerStyle: {
-				shadowColor: '#000',
-				shadowOffset: { width: 0, height: 1 },
-				shadowOpacity: 0.3
-			},
-			headerLeft: (
-				<TouchableOpacity>
-					<Ionicons name="ios-camera" size={32} style={styles.iconCamera} />
-				</TouchableOpacity>
-			),
-			headerRight: (
-				<TouchableOpacity>
-					<Ionicons name="ios-settings" size={32} style={styles.iconSettings} />
-				</TouchableOpacity>
-			)
+		headerMode: 'none',
+		navigationOptions: {
+			headerVisible: false
 		}
 	}
 )
@@ -122,23 +70,9 @@ const PostStack = createStackNavigator(
 		Post: Posts
 	},
 	{
-		defaultNavigationOptions: {
-			title: 'App',
-			headerStyle: {
-				shadowColor: '#000',
-				shadowOffset: { width: 0, height: 1 },
-				shadowOpacity: 0.3
-			},
-			headerLeft: (
-				<TouchableOpacity>
-					<Ionicons name="ios-camera" size={32} style={styles.iconCamera} />
-				</TouchableOpacity>
-			),
-			headerRight: (
-				<TouchableOpacity>
-					<Ionicons name="ios-settings" size={32} style={styles.iconSettings} />
-				</TouchableOpacity>
-			)
+		headerMode: 'none',
+		navigationOptions: {
+			headerVisible: false
 		}
 	}
 )

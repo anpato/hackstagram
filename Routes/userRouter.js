@@ -2,7 +2,8 @@ const express = require('express')
 const userRouter = express.Router()
 const bcrypt = require('bcrypt')
 const { User, Follower, Post } = require('../database/models')
-
+const { fakeUsers } = require('../database/fakeUsers')
+const { fakePosts } = require('../database/fakePosts')
 userRouter.get('/', async (req, res) => {
 	try {
 		const users = await User.findAll()
@@ -103,6 +104,26 @@ userRouter.post('/:user_id/follow/', async (req, res) => {
 			})
 			res.send(following)
 		}
+	} catch (error) {
+		throw error
+	}
+})
+
+userRouter.post('/posts/users', async (req, res) => {
+	try {
+		const users = await User.findAll({ where: {} })
+		for (let i = 0; i < users.length; i++) {
+			for (let j = 0; j < fakePosts.length; j++) {
+				// console.log(fakePosts[j])
+				const posts = await Post.create({
+					title: fakePosts[j].title,
+					description: fakePosts[j].description,
+					image: fakePosts[j].image
+				})
+				await posts.setUser(users[i])
+			}
+		}
+		res.send('created')
 	} catch (error) {
 		throw error
 	}

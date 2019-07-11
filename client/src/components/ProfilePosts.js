@@ -1,7 +1,19 @@
 import React from 'react'
-import { FlatList } from 'react-native'
+import { View, Image } from 'react-native'
 
-const ProfilePosts = ({ data }) => {
-	return <FlatList data={data} />
+const ProfilePosts = ({ image }) => {
+	return (
+		<View>
+			<Image source={{ uri: image }} style={styles.imageStyle} />
+		</View>
+	)
 }
 export default ProfilePosts
+
+const styles = {
+	imageStyle: {
+		height: 90,
+		width: 90,
+		margin: 5
+	}
+}

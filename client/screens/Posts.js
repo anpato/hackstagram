@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, AsyncStorage } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler'
-import { Spinner } from '../src/components/common'
+import { Spinner, Header } from '../src/components/common'
 export default class Posts extends Component {
 	constructor() {
 		super()
@@ -51,17 +51,22 @@ export default class Posts extends Component {
 
 	render() {
 		return (
-			<ScrollView contentContainerStyle={styles.container}>
-				{this.renderPostScreen()}
-			</ScrollView>
+			<View style={styles.mainContainer}>
+				<Header title="App" navigation={this.props.navigation} />
+				<ScrollView contentContainerStyle={styles.container}>
+					{this.renderPostScreen()}
+				</ScrollView>
+			</View>
 		)
 	}
 }
 
 const styles = {
+	mainContainer: {
+		flex: 1
+	},
 	container: {
 		color: '#f8f8f8',
-		flex: 1,
 		alignItems: 'center'
 		// backgroundColor: '#6d6d6d'
 	}

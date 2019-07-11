@@ -17,8 +17,7 @@ const main = async () => {
 	await CommentLike.destroy({ where: {} })
 
 	// Seed Data
-	const fakeUserData = await User.bulkCreate(fakeUsers, { returning: true })
-	const fakePostData = await Post.bulkCreate(fakePosts, { returning: true })
+
 	const user = await User.create({
 		firstName: 'John',
 		lastName: 'Smith',
@@ -61,16 +60,10 @@ const main = async () => {
 	const likeComment = await CommentLike.create({
 		likes: 4
 	})
+	const fakeUserData = await User.bulkCreate(fakeUsers, { returning: true })
+	// const fakePostData = await Post.bulkCreate(fakePosts, { returning: true })
 
-	async function setUsertoPost() {
-		for (let i = 0; i < fakeUserData.length; i++) {
-			for (let j = 0; j < fakePostData.length; j++) {
-				await fakeUserData[i].addPost(fakePostData[j])
-			}
-		}
-	}
-	await setUsertoPost()
-
+	// console.log(user)
 	await user.addPost(post)
 	await user.addComment(comment)
 	await user.addCommentLike(likeComment)
