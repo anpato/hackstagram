@@ -1,4 +1,11 @@
-const languages = ["A# .NET", "A# (Axiom)", "A-0 System", "A+", "A++", "ABAP", "ABC", "ABC ALGOL", "ABLE", "ABSET", "ABSYS", "ACC", "Accent", "Ace DASL", "ACL2", "ACT-III", "Action!", "ActionScript", "Ada", "Adenine", "Agda", "Agilent VEE", "Agora", "AIMMS", "Alef", "ALF", "ALGOL 58", "ALGOL 60", "ALGOL 68", "ALGOL W", "Alice", "Alma-0", "AmbientTalk", "Amiga E", "AMOS", "AMPL", "APL", "App Inventor for Android's visual block language", "AppleScript", "Arc", "ARexx", "Argus", "AspectJ", "Assembly language", "ATS", "Ateji PX", "AutoHotkey", "Autocoder", "AutoIt", "AutoLISP / Visual LISP", "Averest", "AWK", "Axum", "B", "Babbage", "Bash", "BASIC", "bc", "BCPL", "BeanShell", "Batch (Windows/Dos)", "Bertrand", "BETA", "Bigwig", "Bistro", "BitC", "BLISS", "Blue", "Bon", "Boo", "Boomerang", "Bourne shell", "bash", "ksh", "BREW", "BPEL", "C", "C--", "C++", "C#", "C/AL", "Caché ObjectScript", "C Shell", "Caml", "Candle", "Cayenne", "CDuce", "Cecil", "Cel", "Cesil", "Ceylon", "CFEngine", "CFML", "Cg", "Ch", "Chapel", "CHAIN", "Charity", "Charm", "Chef", "CHILL", "CHIP-8", "chomski", "ChucK", "CICS", "Cilk", "CL", "Claire", "Clarion", "Clean", "Clipper", "CLIST", "Clojure", "CLU", "CMS-2", "COBOL", "Cobra", "CODE", "CoffeeScript", "Cola", "ColdC", "ColdFusion", "COMAL", "Combined Programming Language", "COMIT", "Common Intermediate Language", "Common Lisp", "COMPASS", "Component Pascal", "Constraint Handling Rules", "Converge", "Cool", "Coq", "Coral 66", "Corn", "CorVision", "COWSEL", "CPL", "csh", "CSP", "Csound", "CUDA", "Curl", "Curry", "Cyclone", "Cython", "D", "DASL", "DASL", "Dart", "DataFlex", "Datalog", "DATATRIEVE", "dBase", "dc", "DCL", "Deesel", "Delphi", "DinkC", "DIBOL", "Dog", "Draco", "DRAKON", "Dylan", "DYNAMO", "E", "E#", "Ease", "Easy PL/I", "Easy Programming Language", "EASYTRIEVE PLUS", "ECMAScript", "Edinburgh IMP", "EGL", "Eiffel", "ELAN", "Elixir", "Elm", "Emacs Lisp", "Emerald", "Epigram", "EPL", "Erlang", "es", "Escapade", "Escher", "ESPOL", "Esterel", "Etoys", "Euclid", "Euler", "Euphoria", "EusLisp Robot Programming Language", "CMS EXEC", "EXEC 2", "Executable UML", "F", "F#", "Factor", "Falcon", "Fancy", "Fantom", "FAUST", "Felix", "Ferite", "FFP", "Fjölnir", "FL", "Flavors", "Flex", "FLOW-MATIC", "FOCAL", "FOCUS", "FOIL", "FORMAC", "@Formula", "Forth", "Fortran", "Fortress", "FoxBase", "FoxPro", "FP", "FPr", "Franz Lisp", "Frege", "F-Script", "FSProg", "G", "Google Apps Script", "Game Maker Language", "GameMonkey Script", "GAMS", "GAP", "G-code", "Genie", "GDL", "Gibiane", "GJ", "GEORGE", "GLSL", "GNU E", "GM", "Go", "Go!", "GOAL", "Gödel", "Godiva", "GOM (Good Old Mad)", "Goo", "Gosu", "GOTRAN", "GPSS", "GraphTalk", "GRASS", "Groovy", "Hack (programming language)", "HAL/S", "Hamilton C shell", "Harbour", "Hartmann pipelines", "Haskell", "Haxe", "High Level Assembly", "HLSL", "Hop", "Hope", "Hugo", "Hume", "HyperTalk", "IBM Basic assembly language", "IBM HAScript", "IBM Informix-4GL", "IBM RPG", "ICI", "Icon", "Id", "IDL", "Idris", "IMP", "Inform", "Io", "Ioke", "IPL", "IPTSCRAE", "ISLISP", "ISPF", "ISWIM", "J", "J#", "J++", "JADE", "Jako", "JAL", "Janus", "JASS", "Java", "JavaScript", "JCL", "JEAN", "Join Java", "JOSS", "Joule", "JOVIAL", "Joy", "JScript", "JScript .NET", "JavaFX Script", "Julia", "Jython", "K", "Kaleidoscope", "Karel", "Karel++", "KEE", "Kixtart", "KIF", "Kojo", "Kotlin", "KRC", "KRL", "KUKA", "KRYPTON", "ksh", "L", "L# .NET", "LabVIEW", "Ladder", "Lagoona", "LANSA", "Lasso", "LaTeX", "Lava", "LC-3", "Leda", "Legoscript", "LIL", "LilyPond", "Limbo", "Limnor", "LINC", "Lingo", "Linoleum", "LIS", "LISA", "Lisaac", "Lisp", "Lite-C", "Lithe", "Little b", "Logo", "Logtalk", "LPC", "LSE", "LSL", "LiveCode", "LiveScript", "Lua", "Lucid", "Lustre", "LYaPAS", "Lynx", "M2001", "M4", "Machine code", "MAD", "MAD/I", "Magik", "Magma", "make", "Maple", "MAPPER", "MARK-IV", "Mary", "MASM Microsoft Assembly x86", "Mathematica", "MATLAB", "Maxima", "Macsyma", "Max", "MaxScript", "Maya (MEL)", "MDL", "Mercury", "Mesa", "Metacard", "Metafont", "MetaL", "Microcode", "MicroScript", "MIIS", "MillScript", "MIMIC", "Mirah", "Miranda", "MIVA Script", "ML", "Moby", "Model 204", "Modelica", "Modula", "Modula-2", "Modula-3", "Mohol", "MOO", "Mortran", "Mouse", "MPD", "CIL", "MSL", "MUMPS", "NASM", "NATURAL", "Napier88", "Neko", "Nemerle", "nesC", "NESL", "Net.Data", "NetLogo", "NetRexx", "NewLISP", "NEWP", "Newspeak", "NewtonScript", "NGL", "Nial", "Nice", "Nickle", "Nim", "NPL", "Not eXactly C", "Not Quite C", "NSIS", "Nu", "NWScript", "NXT-G", "o:XML", "Oak", "Oberon", "Obix", "OBJ2", "Object Lisp", "ObjectLOGO", "Object REXX", "Object Pascal", "Objective-C", "Objective-J", "Obliq", "Obol", "OCaml", "occam", "occam-π", "Octave", "OmniMark", "Onyx", "Opa", "Opal", "OpenCL", "OpenEdge ABL", "OPL", "OPS5", "OptimJ", "Orc", "ORCA/Modula-2", "Oriel", "Orwell", "Oxygene", "Oz", "P#", "ParaSail (programming language)", "PARI/GP", "Pascal", "Pawn", "PCASTL", "PCF", "PEARL", "PeopleCode", "Perl", "PDL", "PHP", "Phrogram", "Pico", "Picolisp", "Pict", "Pike", "PIKT", "PILOT", "Pipelines", "Pizza", "PL-11", "PL/0", "PL/B", "PL/C", "PL/I", "PL/M", "PL/P", "PL/SQL", "PL360", "PLANC", "Plankalkül", "Planner", "PLEX", "PLEXIL", "Plus", "POP-11", "PostScript", "PortablE", "Powerhouse", "PowerBuilder", "PowerShell", "PPL", "Processing", "Processing.js", "Prograph", "PROIV", "Prolog", "PROMAL", "Promela", "PROSE modeling language", "PROTEL", "ProvideX", "Pro*C", "Pure", "Python", "Q (equational programming language)", "Q (programming language from Kx Systems)", "Qalb", "QtScript", "QuakeC", "QPL", "R", "R++", "Racket", "RAPID", "Rapira", "Ratfiv", "Ratfor", "rc", "REBOL", "Red", "Redcode", "REFAL", "Reia", "Revolution", "rex", "REXX", "Rlab", "RobotC", "ROOP", "RPG", "RPL", "RSL", "RTL/2", "Ruby", "RuneScript", "Rust", "S", "S2", "S3", "S-Lang", "S-PLUS", "SA-C", "SabreTalk", "SAIL", "SALSA", "SAM76", "SAS", "SASL", "Sather", "Sawzall", "SBL", "Scala", "Scheme", "Scilab", "Scratch", "Script.NET", "Sed", "Seed7", "Self", "SenseTalk", "SequenceL", "SETL", "Shift Script", "SIMPOL", "SIGNAL", "SiMPLE", "SIMSCRIPT", "Simula", "Simulink", "SISAL", "SLIP", "SMALL", "Smalltalk", "Small Basic", "SML", "Snap!", "SNOBOL", "SPITBOL", "Snowball", "SOL", "Span", "SPARK", "Speedcode", "SPIN", "SP/k", "SPS", "Squeak", "Squirrel", "SR", "S/SL", "Stackless Python", "Starlogo", "Strand", "Stata", "Stateflow", "Subtext", "SuperCollider", "SuperTalk", "Swift (Apple programming language)", "Swift (parallel scripting language)", "SYMPL", "SyncCharts", "SystemVerilog", "T", "TACL", "TACPOL", "TADS", "TAL", "Tcl", "Tea", "TECO", "TELCOMP", "TeX", "TEX", "TIE", "Timber", "TMG", "Tom", "TOM", "Topspeed", "TPU", "Trac", "TTM", "T-SQL", "TTCN", "Turing", "TUTOR", "TXL", "TypeScript", "Turbo C++", "Ubercode", "UCSD Pascal", "Umple", "Unicon", "Uniface", "UNITY", "Unix shell", "UnrealScript", "Vala", "VBA", "VBScript", "Verilog", "VHDL", "Visual Basic", "Visual Basic .NET", "Visual DataFlex", "Visual DialogScript", "Visual Fortran", "Visual FoxPro", "Visual J++", "Visual J#", "Visual Objects", "Visual Prolog", "VSXu", "Vvvv", "WATFIV, WATFOR", "WebDNA", "WebQL", "Windows PowerShell", "Winbatch", "Wolfram", "Wyvern", "X++", "X#", "X10", "XBL", "XC", "XMOS architecture", "xHarbour", "XL", "Xojo", "XOTcl", "XPL", "XPL0", "XQuery", "XSB", "XSLT", "XPath", "Xtend", "Yorick", "YQL", "Z notation", "Zeno", "ZOPL", "ZPL"]
+const languages = ["A# .NET", "A# (Axiom)", "A-0 System", "A+", "A++", "ABAP", "ABC", "ABC ALGOL", "ABLE", "ABSET", "ABSYS", "ACC", "Accent", "Ace DASL", "ACL2", "ACT-III", "Action!", "ActionScript", "Ada", "Adenine", "Agda", "Agilent VEE", "Agora", "AIMMS", "Alef", "ALF", "ALGOL 58", "ALGOL 60", "ALGOL 68", "ALGOL W", "Alice", "Alma-0", "AmbientTalk", "Amiga E", "AMOS", "AMPL", "APL", "App Inventor for Android's visual block language", "AppleScript", "Arc", "ARexx", "Argus", "AspectJ", "Assembly language", "ATS", "Ateji PX", "AutoHotkey", "Autocoder", "AutoIt", "AutoLISP / Visual LISP", "Averest", "AWK", "Axum", "B", "Babbage", "Bash", "BASIC", "bc", "BCPL", "BeanShell", "Batch (Windows/Dos)", "Bertrand", "BETA", "Bigwig", "Bistro", "BitC", "BLISS", "Blue", "Bon", "Boo", "Boomerang", "Bourne shell", "bash", "ksh", "BREW", "BPEL", "C", "C--", "C++", "C#", "C/AL", "Caché ObjectScript", "C Shell", "Caml", "Candle", "Cayenne", "CDuce", "Cecil", "Cel", "Cesil", "Ceylon", "CFEngine", "CFML", "Cg", "Ch", "Chapel", "CHAIN", "Charity", "Charm", "Chef", "CHILL", "CHIP-8", "chomski", "ChucK", "CICS", "Cilk", "CL", "Claire", "Clarion", "Clean", "Clipper", "CLIST", "Clojure", "CLU", "CMS-2", "COBOL", "Cobra", "CODE", "CoffeeScript", "Cola", "ColdC", "ColdFusion", "COMAL", "Combined Programming Language", "COMIT", "Common Intermediate Language", "Common Lisp", "COMPASS", "Component Pascal", "Constraint Handling Rules", "Converge", "Cool", "Coq", "Coral 66", "Corn", "CorVision", "COWSEL", "CPL", "csh", "CSP", "Csound", "CUDA", "Curl", "Curry", "Cyclone", "Cython", "D", "DASL", "DASL", "Dart", "DataFlex", "Datalog", "DATATRIEVE", "dBase", "dc", "DCL", "Deesel", "Delphi", "DinkC", "DIBOL", "Dog", "Draco", "DRAKON", "Dylan", "DYNAMO", "E", "E#", "Ease", "Easy PL/I", "Easy Programming Language", "EASYTRIEVE PLUS", "ECMAScript", "Edinburgh IMP", "EGL", "Eiffel", "ELAN", "Elixir", "Elm", "Emacs Lisp", "Emerald", "Epigram", "EPL", "Erlang", "es", "Escapade", "Escher", "ESPOL", "Esterel", "Etoys", "Euclid", "Euler", "Euphoria", "EusLisp Robot Programming Language", "CMS EXEC", "EXEC 2", "Executable UML", "F", "F#", "Factor", "Falcon", "Fancy", "Fantom", "FAUST", "Felix", "Ferite", "FFP", "Fjölnir", "FL", "Flavors", "Flex", "FLOW-MATIC", "FOCAL", "FOCUS", "FOIL", "FORMAC", "@Formula", "Forth", "Fortran", "Fortress", "FoxBase", "FoxPro", "FP", "FPr", "Franz Lisp", "Frege", "F-Script", "FSProg", "G", "Google Apps Script", "Game Maker Language", "GameMonkey Script", "GAMS", "GAP", "G-code", "Genie", "GDL", "Gibiane", "GJ", "GEORGE", "GLSL", "GNU E", "GM", "Go", "Go!", "GOAL", "Gödel", "Godiva", "GOM (Good Old Mad)", "Goo", "Gosu", "GOTRAN", "GPSS", "GraphTalk", "GRASS", "Groovy", "Hack (programming language)", "HAL/S", "Hamilton C shell", "Harbour", "Hartmann pipelines", "Haskell", "Haxe", "High Level Assembly", "HLSL", "Hop", "Hope", "Hugo", "Hume", "HyperTalk", "IBM Basic assembly language", "IBM HAScript", "IBM Informix-4GL", "IBM RPG", "ICI", "Icon", "Id", "IDL", "Idris", "IMP", "Inform", "Io", "Ioke", "IPL", "IPTSCRAE", "ISLISP", "ISPF", "ISWIM", "J", "J#", "J++", "JADE", "Jako", "JAL", "Janus", "JASS", "Java", "JavaScript", "JCL", "JEAN", "Join Java", "JOSS", "Joule", "JOVIAL", "Joy", "JScript", "JScript .NET", "JavaFX Script", "Julia", "Jython", "K", "Kaleidoscope", "Karel", "Karel++", "KEE", "Kixtart", "KIF", "Kojo", "Kotlin", "KRC", "KRL", "KUKA", "KRYPTON", "ksh", "L", "L# .NET", "LabVIEW", "Ladder", "Lagoona", "LANSA", "Lasso", "LaTeX", "Lava", "LC-3", "Leda", "Legoscript", "LIL", "LilyPond", "Limbo", "Limnor", "LINC", "Lingo", "Linoleum", "LIS", "LISA", "Lisaac", "Lisp", "Lite-C", "Lithe", "Little b", "Logo", "Logtalk", "LPC", "LSE", "LSL", "LiveCode", "LiveScript", "Lua", "Lucid", "Lustre", "LYaPAS", "Lynx", "M2001", "M4", "Machine code", "MAD", "MAD/I", "Magik", "Magma", "make", "Maple", "MAPPER", "MARK-IV", "Mary", "MASM Microsoft Assembly x86", "Mathematica", "MATLAB", "Maxima", "Macsyma", "Max", "MaxScript", "Maya (MEL)", "MDL", "Mercury", "Mesa", "Metacard", "Metafont", "MetaL", "Microcode", "MicroScript", "MIIS", "MillScript", "MIMIC", "Mirah", "Miranda", "MIVA Script", "ML", "Moby", "Model 204", "Modelica", "Modula", "Modula-2", "Modula-3", "Mohol", "MOO", "Mortran", "Mouse", "MPD", "CIL", "MSL", "MUMPS", "NASM", "NATURAL", "Napier88", "Neko", "Nemerle", "nesC", "NESL", "Net.Data", "NetLogo", "NetRexx", "NewLISP", "NEWP", "Newspeak", "NewtonScript", "NGL", "Nial", "Nice", "Nickle", "Nim", "NPL", "Not eXactly C", "Not Quite C", "NSIS", "Nu", "NWScript", "NXT-G", "o:XML", "Oak", "Oberon", "Obix", "OBJ2", "Object Lisp", "ObjectLOGO", "Object REXX", "Object Pascal", "Objective-C", "Objective-J", "Obliq", "Obol", "OCaml", "occam", "occam-π", "Octave", "OmniMark", "Onyx", "Opa", "Opal", "OpenCL", "OpenEdge ABL", "OPL", "OPS5", "OptimJ", "Orc", "ORCA/Modula-2", "Oriel", "Orwell", "Oxygene", "Oz", "P#", "ParaSail (programming language)", "PARI/GP", "Pascal", "Pawn", "PCASTL", "PCF", "PEARL", "PeopleCode", "Perl", "PDL", "PHP", "Phrogram", "Pico", "Picolisp", "Pict", "Pike", "PIKT", "PILOT", "Pipelines", "Pizza", "PL-11", "PL/0", "PL/B", "PL/C", "PL/I", "PL/M", "PL/P", "PL/SQL", "PL360", "PLANC", "Plankalkül", "Planner", "PLEX", "PLEXIL", "Plus", "POP-11", "PostScript", "PortablE", "Powerhouse", "PowerBuilder", "PowerShell", "PPL", "Processing", "Processing.js", "Prograph", "PROIV", "Prolog", "PROMAL", "Promela", "PROSE modeling language", "PROTEL", "ProvideX", "Pro*C", "Pure", "Python", "Q (equational programming language)", "Q (programming language from Kx Systems)", "Qalb", "QtScript", "QuakeC", "QPL", "R", "R++", "Racket", "RAPID", "Rapira", "Ratfiv", "Ratfor", "rc", "REBOL", "Red", "Redcode", "REFAL", "Reia", "Revolution", "rex", "REXX", "Rlab", "RobotC", "ROOP", "RPG", "RPL", "RSL", "RTL/2", "Ruby", "RuneScript", "Rust", "S", "S2", "S3", "S-Lang", "S-PLUS", "SA-C", "SabreTalk", "SAIL", "SALSA", "SAM76", "SAS", "SASL", "Sather", "Sawzall", "SBL", "Scala", "Scheme", "Scilab", "Scratch", "Script.NET", "Sed", "Seed7", "Self", "SenseTalk", "SequenceL", "SETL", "Shift Script", "SIMPOL", "SIGNAL", "SiMPLE", "SIMSCRIPT", "Simula", "Simulink", "SISAL", "SLIP", "SMALL", "Smalltalk", "Small Basic", "SML", "Snap!", "SNOBOL", "SPITBOL", "Snowball", "SOL", "Span", "SPARK", "Speedcode", "SPIN", "SP/k", "SPS", "Squeak", "Squirrel", "SR", "S/SL", "Stackless Python", "Starlogo", "Strand", "Stata", "Stateflow", "Subtext", "SuperCollider", "SuperTalk", "Swift (Apple programming language)", "Swift (parallel scripting language)", "SYMPL", "SyncCharts", "SystemVerilog", "T", "TACL", "TACPOL", "TADS", "TAL", "Tcl", "Tea", "TECO", "TELCOMP", "TeX", "TEX", "TIE", "Timber", "TMG", "Tom", "TOM", "Topspeed", "TPU", "Trac", "TTM", "T-SQL", "TTCN", "Turing", "TUTOR", "TXL", "TypeScript", "Turbo C++", "Ubercode", "UCSD Pascal", "Umple", "Unicon", "Uniface", "UNITY", "Unix shell", "UnrealScript", "Vala", "VBA", "VBScript", "Verilog", "VHDL", "Visual Basic", "Visual Basic .NET", "Visual DataFlex", "Visual DialogScript", "Visual Fortran", "Visual FoxPro", "Visual J++", "Visual J#", "Visual Objects", "Visual Prolog", "VSXu", "Vvvv", "WATFIV, WATFOR", "WebDNA", "WebQL", "Windows PowerShell", "Winbatch", "Wolfram", "Wyvern", "X++", "X#", "X10", "XBL", "XC", "XMOS architecture", "xHarbour", "XL", "Xojo", "XOTcl", "XPL", "XPL0", "XQuery", "XSB", "XSLT", "XPath", "Xtend", "Yorick"]
+
+function assignLanguage(arr) {
+  let end = arr.length/100
+  let data = arr.slice(Math.floor(Math.random()* arr.length), Math.random()*-end)
+  return data
+}
+console.log(assignLanguage(languages))
 
 const fakeUsers = [
   {
@@ -8,7 +15,7 @@ const fakeUsers = [
     "username": "crazyzebra890",
     "password": "naughty",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/23.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "alberte",
@@ -17,7 +24,7 @@ const fakeUsers = [
     "username": "brownbird182",
     "password": "simple1",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/62.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "viljami",
@@ -26,7 +33,7 @@ const fakeUsers = [
     "username": "yellowdog607",
     "password": "spunky",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/35.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "wendy",
@@ -35,7 +42,7 @@ const fakeUsers = [
     "username": "bigsnake240",
     "password": "blacky",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/77.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "mia",
@@ -44,7 +51,7 @@ const fakeUsers = [
     "username": "tinypanda661",
     "password": "tasha1",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/9.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "tilde",
@@ -53,7 +60,7 @@ const fakeUsers = [
     "username": "blackrabbit273",
     "password": "beau",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/74.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "آرتين",
@@ -62,7 +69,7 @@ const fakeUsers = [
     "username": "bigmeercat939",
     "password": "1215",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/59.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "درسا",
@@ -71,7 +78,7 @@ const fakeUsers = [
     "username": "yellowmouse571",
     "password": "otis",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/16.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "vanessa",
@@ -80,7 +87,7 @@ const fakeUsers = [
     "username": "lazydog895",
     "password": "hakr",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/12.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "claire",
@@ -89,7 +96,7 @@ const fakeUsers = [
     "username": "tinybutterfly334",
     "password": "44444",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/14.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "roméo",
@@ -98,7 +105,7 @@ const fakeUsers = [
     "username": "ticklishtiger669",
     "password": "manowar",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/96.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "cecil",
@@ -107,7 +114,7 @@ const fakeUsers = [
     "username": "crazydog111",
     "password": "puppies",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/64.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "minttu",
@@ -116,7 +123,7 @@ const fakeUsers = [
     "username": "bluelion602",
     "password": "golfball",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/30.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "addison",
@@ -125,7 +132,7 @@ const fakeUsers = [
     "username": "beautifulgorilla673",
     "password": "johnson1",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/23.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "knud",
@@ -134,7 +141,7 @@ const fakeUsers = [
     "username": "greenladybug907",
     "password": "skip",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/67.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "marina",
@@ -143,7 +150,7 @@ const fakeUsers = [
     "username": "greenleopard287",
     "password": "bruiser",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/79.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "kenan",
@@ -152,7 +159,7 @@ const fakeUsers = [
     "username": "bluepanda913",
     "password": "alibaba",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/2.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "consuelo",
@@ -161,7 +168,7 @@ const fakeUsers = [
     "username": "bluepanda685",
     "password": "bikini",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/76.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "theo",
@@ -170,7 +177,7 @@ const fakeUsers = [
     "username": "silverfish211",
     "password": "kingpin",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/54.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "alexander",
@@ -179,7 +186,7 @@ const fakeUsers = [
     "username": "beautifulpanda633",
     "password": "jackpot",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/17.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "franklin",
@@ -188,7 +195,7 @@ const fakeUsers = [
     "username": "redtiger738",
     "password": "precious",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/54.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "lucas",
@@ -197,7 +204,7 @@ const fakeUsers = [
     "username": "organictiger716",
     "password": "winner1",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/37.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "coşkun",
@@ -206,7 +213,7 @@ const fakeUsers = [
     "username": "whitedog173",
     "password": "core",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/90.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "marius",
@@ -215,7 +222,7 @@ const fakeUsers = [
     "username": "yellowmouse922",
     "password": "bambam",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/73.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "cleide",
@@ -224,7 +231,7 @@ const fakeUsers = [
     "username": "bluelion545",
     "password": "deborah",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/22.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "emil",
@@ -233,7 +240,7 @@ const fakeUsers = [
     "username": "bigbutterfly878",
     "password": "abraham",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/33.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "joshua",
@@ -242,7 +249,7 @@ const fakeUsers = [
     "username": "beautifulwolf808",
     "password": "aceace",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/66.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "violet",
@@ -251,7 +258,7 @@ const fakeUsers = [
     "username": "goldenbird157",
     "password": "fishfish",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/24.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "amalia",
@@ -260,7 +267,7 @@ const fakeUsers = [
     "username": "greenduck729",
     "password": "scarface",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/27.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "georgia",
@@ -269,7 +276,7 @@ const fakeUsers = [
     "username": "purplefish732",
     "password": "carmex2",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/51.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "björn",
@@ -278,7 +285,7 @@ const fakeUsers = [
     "username": "heavyfrog581",
     "password": "paradise",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/33.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "bérénice",
@@ -287,7 +294,7 @@ const fakeUsers = [
     "username": "organicgorilla322",
     "password": "hawkeye",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/10.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "saana",
@@ -296,7 +303,7 @@ const fakeUsers = [
     "username": "beautifulkoala664",
     "password": "antoine",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/94.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "olga",
@@ -305,7 +312,7 @@ const fakeUsers = [
     "username": "bluefish361",
     "password": "andrew1",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/0.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "olivia",
@@ -314,7 +321,7 @@ const fakeUsers = [
     "username": "greenfrog375",
     "password": "maryann",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/78.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "theo",
@@ -323,7 +330,7 @@ const fakeUsers = [
     "username": "crazybird951",
     "password": "lucky1",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/38.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "vincent",
@@ -332,7 +339,7 @@ const fakeUsers = [
     "username": "crazyswan524",
     "password": "zappa",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/97.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "fernando",
@@ -341,7 +348,7 @@ const fakeUsers = [
     "username": "organicmeercat911",
     "password": "dumb",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/71.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "layla",
@@ -350,7 +357,7 @@ const fakeUsers = [
     "username": "happyfrog640",
     "password": "panasoni",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/90.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "swen",
@@ -359,7 +366,7 @@ const fakeUsers = [
     "username": "bigmeercat539",
     "password": "hockey",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/16.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "marie-louise",
@@ -368,7 +375,7 @@ const fakeUsers = [
     "username": "goldenladybug336",
     "password": "masters",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/8.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "federico",
@@ -377,7 +384,7 @@ const fakeUsers = [
     "username": "lazybear826",
     "password": "boat",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/78.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "amber",
@@ -386,7 +393,7 @@ const fakeUsers = [
     "username": "ticklishgorilla866",
     "password": "insert",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/79.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "antonino",
@@ -395,7 +402,7 @@ const fakeUsers = [
     "username": "crazymeercat585",
     "password": "2469",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/36.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "everett",
@@ -404,7 +411,7 @@ const fakeUsers = [
     "username": "blackfish356",
     "password": "sixty9",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/79.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "ibérico",
@@ -413,7 +420,7 @@ const fakeUsers = [
     "username": "sadmeercat837",
     "password": "peachy",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/71.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "martine",
@@ -422,7 +429,7 @@ const fakeUsers = [
     "username": "orangeostrich123",
     "password": "66666",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/76.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "vilma",
@@ -431,7 +438,7 @@ const fakeUsers = [
     "username": "crazymouse116",
     "password": "angus",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/62.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "selésio",
@@ -440,7 +447,7 @@ const fakeUsers = [
     "username": "blackostrich669",
     "password": "blue42",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/47.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "vanessa",
@@ -449,7 +456,7 @@ const fakeUsers = [
     "username": "happybird531",
     "password": "cigar",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/90.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "عباس",
@@ -458,7 +465,7 @@ const fakeUsers = [
     "username": "yellowpeacock447",
     "password": "royals",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/19.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "olivia",
@@ -467,7 +474,7 @@ const fakeUsers = [
     "username": "brownzebra652",
     "password": "123654",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/23.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "fletcher",
@@ -476,7 +483,7 @@ const fakeUsers = [
     "username": "angrylion597",
     "password": "darlene",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/90.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "kristin",
@@ -485,7 +492,7 @@ const fakeUsers = [
     "username": "purplepeacock451",
     "password": "sparky1",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/47.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "clémentine",
@@ -494,7 +501,7 @@ const fakeUsers = [
     "username": "greenbear538",
     "password": "north",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/40.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "susana",
@@ -503,7 +510,7 @@ const fakeUsers = [
     "username": "yellowbear912",
     "password": "hawks",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/42.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "jennie",
@@ -512,7 +519,7 @@ const fakeUsers = [
     "username": "redladybug372",
     "password": "tyson",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/83.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "heidy",
@@ -521,7 +528,7 @@ const fakeUsers = [
     "username": "orangezebra959",
     "password": "2468",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/67.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "enrique",
@@ -530,7 +537,7 @@ const fakeUsers = [
     "username": "browncat246",
     "password": "empire",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/83.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "roland",
@@ -539,7 +546,7 @@ const fakeUsers = [
     "username": "redswan407",
     "password": "sascha",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/9.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "adrienne",
@@ -548,7 +555,7 @@ const fakeUsers = [
     "username": "brownleopard454",
     "password": "barefoot",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/33.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "marcus",
@@ -557,7 +564,7 @@ const fakeUsers = [
     "username": "sadpeacock924",
     "password": "burn",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/28.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "nikee",
@@ -566,7 +573,7 @@ const fakeUsers = [
     "username": "yellowostrich812",
     "password": "boss",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/89.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "liam",
@@ -575,7 +582,7 @@ const fakeUsers = [
     "username": "goldenwolf250",
     "password": "bacardi",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/86.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "constantin",
@@ -584,7 +591,7 @@ const fakeUsers = [
     "username": "smallpanda702",
     "password": "sapper",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/25.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "jaime",
@@ -593,7 +600,7 @@ const fakeUsers = [
     "username": "heavydog903",
     "password": "pearl",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/80.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "abel",
@@ -602,7 +609,7 @@ const fakeUsers = [
     "username": "whitefish171",
     "password": "dummy",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/76.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "ebony",
@@ -611,7 +618,7 @@ const fakeUsers = [
     "username": "happyleopard236",
     "password": "maurice",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/18.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "cristian",
@@ -620,7 +627,7 @@ const fakeUsers = [
     "username": "beautifulcat904",
     "password": "monica",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/41.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "armando",
@@ -629,7 +636,7 @@ const fakeUsers = [
     "username": "tinyostrich978",
     "password": "church",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/53.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "iida",
@@ -638,7 +645,7 @@ const fakeUsers = [
     "username": "orangeostrich313",
     "password": "corolla",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/54.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "jennie",
@@ -647,7 +654,7 @@ const fakeUsers = [
     "username": "beautifulswan692",
     "password": "salem",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/6.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "emmi",
@@ -656,7 +663,7 @@ const fakeUsers = [
     "username": "smallladybug185",
     "password": "098765",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/10.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "آوینا",
@@ -665,7 +672,7 @@ const fakeUsers = [
     "username": "redzebra961",
     "password": "bobafett",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/8.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "mariana",
@@ -674,7 +681,7 @@ const fakeUsers = [
     "username": "crazyfrog690",
     "password": "ffffff",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/89.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "رها",
@@ -683,7 +690,7 @@ const fakeUsers = [
     "username": "whitecat282",
     "password": "templar",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/23.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "meral",
@@ -692,7 +699,7 @@ const fakeUsers = [
     "username": "crazypeacock989",
     "password": "klaus",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/21.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "ellen",
@@ -701,7 +708,7 @@ const fakeUsers = [
     "username": "beautifulostrich821",
     "password": "pirates",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/35.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "ایلیا",
@@ -710,7 +717,7 @@ const fakeUsers = [
     "username": "happyladybug206",
     "password": "everett",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/81.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "hymke",
@@ -719,7 +726,7 @@ const fakeUsers = [
     "username": "bigmeercat972",
     "password": "double",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/7.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "elise",
@@ -728,7 +735,7 @@ const fakeUsers = [
     "username": "crazyswan553",
     "password": "mmmmmmmm",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/39.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "jorge",
@@ -737,7 +744,7 @@ const fakeUsers = [
     "username": "purplegoose497",
     "password": "diver1",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/59.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "jimi",
@@ -746,7 +753,7 @@ const fakeUsers = [
     "username": "organickoala245",
     "password": "easy",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/58.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "dustin",
@@ -755,7 +762,7 @@ const fakeUsers = [
     "username": "angrylion450",
     "password": "woowoo",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/80.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "محمدطاها",
@@ -764,7 +771,7 @@ const fakeUsers = [
     "username": "angrysnake768",
     "password": "987654",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/78.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "kevin",
@@ -773,7 +780,7 @@ const fakeUsers = [
     "username": "organicbird164",
     "password": "carlton",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/45.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "annette",
@@ -782,7 +789,7 @@ const fakeUsers = [
     "username": "yellowgorilla316",
     "password": "athena",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/37.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "emilia",
@@ -791,7 +798,7 @@ const fakeUsers = [
     "username": "angrylion613",
     "password": "bosco1",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/36.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "lauri",
@@ -800,7 +807,7 @@ const fakeUsers = [
     "username": "yellowbutterfly756",
     "password": "films",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/10.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "vildan",
@@ -809,7 +816,7 @@ const fakeUsers = [
     "username": "sadsnake508",
     "password": "kirk",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/60.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "anne-mieke",
@@ -818,7 +825,7 @@ const fakeUsers = [
     "username": "purplefrog310",
     "password": "362436",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/30.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "elsa",
@@ -827,7 +834,7 @@ const fakeUsers = [
     "username": "redkoala143",
     "password": "charlotte",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/64.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "naomi",
@@ -836,7 +843,7 @@ const fakeUsers = [
     "username": "purpleleopard699",
     "password": "fritz",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/84.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "lisa",
@@ -845,7 +852,7 @@ const fakeUsers = [
     "username": "happygorilla514",
     "password": "krissy",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/9.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "georgino",
@@ -854,7 +861,7 @@ const fakeUsers = [
     "username": "redtiger896",
     "password": "driven",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/76.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "iiris",
@@ -863,7 +870,7 @@ const fakeUsers = [
     "username": "smallfish413",
     "password": "chemical",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/66.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "jaxon",
@@ -872,7 +879,7 @@ const fakeUsers = [
     "username": "yellowbutterfly167",
     "password": "shearer",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/59.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "eduardo",
@@ -881,7 +888,7 @@ const fakeUsers = [
     "username": "blacksnake699",
     "password": "loverboy",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/48.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "mustafa",
@@ -890,7 +897,7 @@ const fakeUsers = [
     "username": "blueladybug195",
     "password": "ryan",
     "profileImage": "https://randomuser.me/api/portraits/thumb/men/17.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   },
   {
     "firstName": "idalina",
@@ -899,7 +906,7 @@ const fakeUsers = [
     "username": "tinyelephant567",
     "password": "powers",
     "profileImage": "https://randomuser.me/api/portraits/thumb/women/91.jpg",
-    "skills" : languages.splice(Math.floor(Math.random() * languages.length), Math.floor(Math.random() * 4))
+    "skills" : assignLanguage(languages)
   }
 ]
 module.exports = {

@@ -1,7 +1,7 @@
 const Axios = require('axios')
 import { IP_ADDRESS } from 'react-native-dotenv'
 const JwtToken = 'token'
-const BASE_URL = `http://192.168.2.15:3001`
+const BASE_URL = `http://127.0.0.1:3001`
 
 const api = Axios.create({
 	baseURL: BASE_URL,
@@ -77,6 +77,15 @@ export const getUserPost = async (id) => {
 export const getFollowersPost = async (id) => {
 	try {
 		const resp = await api.get(`/followers/posts/${id}`)
+		return resp.data
+	} catch (error) {
+		throw error
+	}
+}
+
+export const recommendFollowers = async (id) => {
+	try {
+		const resp = await api.get(`/users/${id}/suggested`)
 		return resp.data
 	} catch (error) {
 		throw error
