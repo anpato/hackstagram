@@ -7,7 +7,7 @@ const Card = (props) => {
 
 export { Card }
 
-const styles = StyleSheet.create({
+const styles = {
 	containerStyle: {
 		borderWidth: 1,
 		borderRadius: 6,
@@ -17,10 +17,9 @@ const styles = StyleSheet.create({
 		shadowOffset: { width: 0, height: 2 },
 		shadowOpacity: 0.2,
 		shadowRadius: 6,
-		elevation: 1,
 		marginLeft: 5,
 		marginRight: 5,
 		marginTop: 5,
 		marginBottom: 20
 	}
-})
+}

@@ -11,6 +11,7 @@ import {
 import { Header, Card, CardSection } from '../src/components/common'
 import { recommendFollowers } from '../src/services/apiService'
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler'
+import EmptyProfileImage from '../src/assets/emptyProfile.jpg'
 export default class Search extends Component {
 	constructor() {
 		super()
@@ -46,7 +47,11 @@ export default class Search extends Component {
 					</CardSection>
 					<CardSection>
 						<Image
-							source={{ uri: profileImage }}
+							source={
+								profileImage
+									? { uri: profileImage }
+									: require('../src/assets/emptyProfile.jpg')
+							}
 							style={{ height: 90, width: 90 }}
 						/>
 					</CardSection>
@@ -58,7 +63,7 @@ export default class Search extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Header title="Search" navigation={this.props.navigation} />
+				<Header title="Suggested" navigation={this.props.navigation} />
 				<ScrollView
 					contentContainerStyle={styles.scrollContainer}
 					refreshControl={
