@@ -5,7 +5,6 @@ function assignLanguage(arr) {
   let data = arr.slice(Math.floor(Math.random()* arr.length), Math.random()*-end)
   return data
 }
-console.log(assignLanguage(languages))
 
 const fakeUsers = [
   {

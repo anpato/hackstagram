@@ -101,11 +101,11 @@ export default class Profile extends Component {
 					<Spinner size="large" />
 				) : (
 					<FlatList
+						data={posts}
 						numColumns={4}
 						showsVerticalScrollIndicator={false}
 						refreshing={this.state.data === false ? true : false}
 						contentContainerStyle={styles.listStyle}
-						data={posts}
 						maxToRenderPerBatch={2}
 						initialNumToRender={4}
 						onEndReachedThreshold={0.5}
