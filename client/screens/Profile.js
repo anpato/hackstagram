@@ -106,7 +106,9 @@ export default class Profile extends Component {
 						refreshing={this.state.data === false ? true : false}
 						contentContainerStyle={styles.listStyle}
 						data={posts}
-						initialNumToRender={5}
+						maxToRenderPerBatch={2}
+						initialNumToRender={4}
+						onEndReachedThreshold={0.5}
 						renderItem={this.renderItem}
 						keyExtractor={() => uuid()}
 					/>

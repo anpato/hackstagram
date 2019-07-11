@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity, AsyncStorage } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
 const Header = ({ title, navigation }) => {
-	console.log(navigation)
 	handleLogOut = async () => {
 		await AsyncStorage.clear()
 		navigation.navigate('Home')
