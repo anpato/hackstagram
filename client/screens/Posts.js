@@ -13,7 +13,7 @@ import { Spinner, Header, Card, CardSection } from '../src/components/common'
 import { getFollowersPost } from '../src/services/apiService'
 import uuid from 'uuid/v4'
 
-export default class Posts extends Component {
+export default class Posts extends React.PureComponent {
 	constructor() {
 		super()
 		this.state = {
@@ -73,24 +73,27 @@ export default class Posts extends Component {
 	renderItem = (post) => {
 		const {
 			item: {
-				user: { username, id, posts }
+				user: { username, posts }
 			}
 		} = post
-		const limitPosts = posts.splice(0, 2)
-		for (let i = 0; i < limitPosts.length; i++) {
+		for (let i = 0; i < posts.length; i++) {
 			return (
-				<Card key={limitPosts[i].id}>
+				<Card key={posts[i].id}>
 					<CardSection>
-						<TouchableOpacity key={id}>
+						<TouchableOpacity key={posts[i].userId}>
 							<Text>{username}</Text>
 						</TouchableOpacity>
 					</CardSection>
+					<Image source={{ uri: posts[i].image }} style={styles.image} />
 					<CardSection>
-						<Image source={{ uri: limitPosts[i].image }} style={styles.image} />
+						<Text>{posts[i].description}</Text>
 					</CardSection>
 					<CardSection>
 						<View>
-							<Text>{limitPosts[i].title}</Text>
+							<Text>Likes: {posts[i].postLikes.length}</Text>
+							<TouchableOpacity>
+								<Text>{`${posts[i].comments.length} comments`}</Text>
+							</TouchableOpacity>
 						</View>
 					</CardSection>
 				</Card>
