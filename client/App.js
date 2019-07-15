@@ -43,7 +43,7 @@ const SettingsStack = createStackNavigator(
 
 const ProfileStack = createStackNavigator(
 	{
-		Profile: Profile
+		ProfileScreen: Profile
 	},
 	{
 		headerMode: 'none',
@@ -81,7 +81,7 @@ const TabNavigator = createBottomTabNavigator(
 	{
 		Post: PostStack,
 		Search: SearchStack,
-		Profile: ProfileStack
+		ProfileTab: ProfileStack
 	},
 	{
 		defaultNavigationOptions: ({ navigation }) => ({
@@ -91,7 +91,7 @@ const TabNavigator = createBottomTabNavigator(
 				let iconName
 				if (routeName === 'Post') {
 					iconName = `ios-home${focused ? '' : ''}`
-				} else if (routeName === 'Profile') {
+				} else if (routeName === 'ProfileTab') {
 					iconName = `ios-person${focused ? '' : ''}`
 				} else if (routeName === 'Search') {
 					iconName = `ios-search`

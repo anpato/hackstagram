@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import {
 	ScrollView,
 	View,
-	Text,
 	AsyncStorage,
 	RefreshControl,
 	FlatList,
@@ -22,6 +21,7 @@ export default class Profile extends Component {
 	constructor() {
 		super()
 		this.state = {
+			userId: null,
 			userData: [],
 			followers: [],
 			posts: [],
@@ -34,22 +34,37 @@ export default class Profile extends Component {
 		try {
 			this.setState({ data: false })
 			await this.fetchUserProfile()
-		} catch (error) {}
+		} catch (error) {
+			throw error
+		}
 	}
 
 	componentWillUpdate() {
-		LayoutAnimation.spring()
+		LayoutAnimation.easeInEaseOut()
 	}
 
 	fetchUserProfile = async () => {
-		const data = await AsyncStorage.getItem('user')
-		const user = JSON.parse(data)
-		const userData = await getUser(user.id)
-		const followers = await getFollowersAmount(user.id)
-		const posts = await getUserPost(user.id)
-		this.setState({ userData, followers, posts })
-		if (posts) {
-			this.setState({ data: true })
+		const { navigation } = this.props
+		const userId = navigation.getParam('userId')
+		this.setState({ userId })
+		if (userId) {
+			const userData = await getUser(userId)
+			const followers = await getFollowersAmount(userId)
+			const posts = await getUserPost(userId)
+			this.setState({ userData, followers, posts })
+			if (posts) {
+				this.setState({ data: true, userId: null })
+			}
+		} else {
+			const data = await AsyncStorage.getItem('user')
+			const user = JSON.parse(data)
+			const userData = await getUser(user.id)
+			const followers = await getFollowersAmount(user.id)
+			const posts = await getUserPost(user.id)
+			this.setState({ userData, followers, posts })
+			if (posts) {
+				this.setState({ data: true })
+			}
 		}
 	}
 

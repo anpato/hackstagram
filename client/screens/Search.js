@@ -37,10 +37,14 @@ export default class Search extends Component {
 
 	renderItem = (user) => {
 		const {
-			item: { username, profileImage }
+			item: { id, username, profileImage }
 		} = user
+
 		return (
-			<TouchableOpacity>
+			<TouchableOpacity
+				onPress={() => {
+					this.props.navigation.push('ProfileScreen', { userId: id })
+				}}>
 				<Card>
 					<CardSection style={{ width: 150 }}>
 						<Text>{username}</Text>

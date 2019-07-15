@@ -2,7 +2,6 @@ import React from 'react'
 import { View, Text, TouchableOpacity, Button, Image } from 'react-native'
 
 const ProfileDetails = ({
-	userId,
 	username,
 	profileImage,
 	followers,
