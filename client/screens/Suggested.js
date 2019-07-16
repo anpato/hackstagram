@@ -15,7 +15,6 @@ export default class Search extends PureComponent {
 
 	async componentDidMount() {
 		try {
-			this.setState({ loading: true })
 			await this.getSuggested()
 		} catch (error) {
 			throw error
@@ -23,10 +22,13 @@ export default class Search extends PureComponent {
 	}
 
 	getSuggested = async () => {
+		this.setState({ loading: true })
 		const data = await AsyncStorage.getItem('user')
 		const resp = JSON.parse(data)
 		const users = await recommendFollowers(resp.id)
-		if (users) this.setState({ users, loading: false })
+		if (users) {
+			this.setState({ users, loading: false })
+		}
 	}
 
 	renderItem = (user) => {

@@ -11,12 +11,10 @@ export { CardSection }
 
 const styles = StyleSheet.create({
 	containerStyle: {
-		borderBottomWidth: 1,
 		padding: 5,
-		backgroundColor: '#fff',
+		backgroundColor: '#ede7f6',
 		justifyContent: 'flex-start',
 		flexDirection: 'row',
-		borderColor: '#ddd',
 		position: 'relative'
 	}
 })

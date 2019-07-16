@@ -25,10 +25,6 @@ export default class Posts extends PureComponent {
 		}
 	}
 
-	componentWillUpdate() {
-		LayoutAnimation.easeInEaseOut()
-	}
-
 	async componentDidMount() {
 		try {
 			await this.getUserId()
@@ -74,38 +70,39 @@ export default class Posts extends PureComponent {
 		const { navigation } = this.props
 		const {
 			item: {
-				user: { username, posts }
+				user: { username, userId, posts }
 			}
 		} = post
-		return posts.map((post) => {
+
+		for (let i = 0; i < posts.length; i++) {
 			return (
-				<Card key={post.id}>
+				<Card key={posts[i].id}>
 					<CardSection>
 						<TouchableOpacity
-							key={post.userId}
+							key={userId}
 							onPress={() =>
 								navigation.push('ProfileScreen', {
-									userId: post.userId
+									userId: userId
 								})
 							}>
 							<Text>{username}</Text>
 						</TouchableOpacity>
 					</CardSection>
-					<Image source={{ uri: post.image }} style={styles.image} />
+					<Image source={{ uri: posts[i].image }} style={styles.image} />
 					<CardSection>
-						<Text>{post.description}</Text>
+						<Text>{posts[i].description}</Text>
 					</CardSection>
 					<CardSection>
-						<View>
-							<Text>Likes: {post.postLikes.length}</Text>
+						<View style={styles.subContent}>
+							<Text>Likes: {posts[i].postLikes.length}</Text>
 							<TouchableOpacity>
-								<Text>{`${post.comments.length} comments`}</Text>
+								<Text>{`View All ${posts[i].comments.length} comments`}</Text>
 							</TouchableOpacity>
 						</View>
 					</CardSection>
 				</Card>
 			)
-		})
+		}
 	}
 
 	handleRefresh = async () => {
@@ -114,27 +111,8 @@ export default class Posts extends PureComponent {
 		this.setState({ refreshing: false })
 	}
 
-	renderPostScreen = () => {
-		const { loading, posts } = this.state
-		if (loading) {
-			return <Spinner />
-		} else {
-			return (
-				<FlatList
-					data={posts}
-					showsVerticalScrollIndicator={false}
-					contentContainerStyle={styles.container}
-					maxToRenderPerBatch={1}
-					initialNumToRender={1}
-					onEndReachedThreshold={0.5}
-					renderItem={this.renderItem}
-					keyExtractor={(posts) => posts.id.toString()}
-				/>
-			)
-		}
-	}
-
 	render() {
+		const { loading, posts } = this.state
 		return (
 			<View style={styles.mainContainer}>
 				<Header title="App" navigation={this.props.navigation} />
@@ -147,7 +125,20 @@ export default class Posts extends PureComponent {
 							onRefresh={this.handleRefresh}
 						/>
 					}>
-					{this.renderPostScreen()}
+					{loading === true ? (
+						<Spinner />
+					) : (
+						<FlatList
+							data={posts}
+							showsVerticalScrollIndicator={false}
+							contentContainerStyle={styles.container}
+							maxToRenderPerBatch={1}
+							initialNumToRender={1}
+							onEndReachedThreshold={0.5}
+							renderItem={this.renderItem}
+							keyExtractor={(posts) => posts.id.toString()}
+						/>
+					)}
 				</ScrollView>
 			</View>
 		)
@@ -166,5 +157,10 @@ const styles = {
 	image: {
 		height: 200,
 		width: 380
+	},
+	subContent: {
+		flexDirection: 'row',
+		flex: 1,
+		justifyContent: 'space-between'
 	}
 }
