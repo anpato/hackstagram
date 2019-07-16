@@ -31,7 +31,7 @@ export const login = async (data) => {
 
 export const getUsernames = async () => {
 	try {
-		const req = await api.get('/users/verify/username')
+		const req = await api.get('verify/username')
 		return req.data
 	} catch (error) {
 		throw error
@@ -40,7 +40,7 @@ export const getUsernames = async () => {
 
 export const getEmails = async () => {
 	try {
-		const req = await api.get('/users/verify/email')
+		const req = await api.get('/verify/email')
 		return req.data
 	} catch (error) {
 		throw error

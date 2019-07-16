@@ -12,6 +12,7 @@ import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import { Spinner, Header, Card, CardSection } from '../src/components/common'
 import { getFollowersPost } from '../src/services/apiService'
 import uuid from 'uuid/v4'
+import PostCard from '../src/components/PostCard'
 
 export default class Posts extends PureComponent {
 	constructor() {
@@ -36,7 +37,7 @@ export default class Posts extends PureComponent {
 	}
 
 	componentWillUpdate() {
-		LayoutAnimation.easeInEaseOut()
+		LayoutAnimation.spring()
 	}
 
 	getUserToken = async () => {
@@ -74,37 +75,21 @@ export default class Posts extends PureComponent {
 		const { navigation } = this.props
 		const {
 			item: {
-				user: { username, userId, posts }
+				user: { username, posts }
 			}
 		} = post
 
 		for (let i = 0; i < posts.length; i++) {
 			return (
-				<Card key={posts[i].id}>
-					<CardSection>
-						<TouchableOpacity
-							key={userId}
-							onPress={() =>
-								navigation.push('ProfileScreen', {
-									userId: userId
-								})
-							}>
-							<Text>{username}</Text>
-						</TouchableOpacity>
-					</CardSection>
-					<Image source={{ uri: posts[i].image }} style={styles.image} />
-					<CardSection>
-						<Text>{posts[i].description}</Text>
-					</CardSection>
-					<CardSection>
-						<View style={styles.subContent}>
-							<Text>Likes: {posts[i].postLikes.length}</Text>
-							<TouchableOpacity>
-								<Text>{`View All ${posts[i].comments.length} comments`}</Text>
-							</TouchableOpacity>
-						</View>
-					</CardSection>
-				</Card>
+				<PostCard
+					key={posts[i].id}
+					comments={posts[i].comments}
+					postLikes={posts[i].postLikes}
+					username={username}
+					userId={posts[i].userId}
+					image={posts[i].image}
+					navigation={navigation}
+				/>
 			)
 		}
 	}
@@ -158,14 +143,5 @@ const styles = {
 		color: '#f8f8f8',
 		alignItems: 'center',
 		justifyContent: 'center'
-	},
-	image: {
-		height: 200,
-		width: 380
-	},
-	subContent: {
-		flexDirection: 'row',
-		flex: 1,
-		justifyContent: 'space-between'
 	}
 }
