@@ -1,6 +1,12 @@
 import React, { PureComponent } from 'react'
-import { ScrollView, View, AsyncStorage, RefreshControl } from 'react-native'
-import { Header, Card, CardSection, Spinner } from '../src/components/common'
+import {
+	ScrollView,
+	View,
+	AsyncStorage,
+	RefreshControl,
+	LayoutAnimation
+} from 'react-native'
+import { Header, Spinner } from '../src/components/common'
 import { recommendFollowers } from '../src/services/apiService'
 import { FlatList } from 'react-native-gesture-handler'
 import { UserCard } from '../src/components/common/UserCard'
@@ -8,8 +14,10 @@ export default class Search extends PureComponent {
 	constructor() {
 		super()
 		this.state = {
+			currentUser: null,
 			users: [],
-			loading: true
+			loading: true,
+			refreshing: false
 		}
 	}
 
@@ -21,11 +29,16 @@ export default class Search extends PureComponent {
 		}
 	}
 
-	getSuggested = async () => {
+	componentWillUpdate() {
+		LayoutAnimation.easeInEaseOut()
+	}
+
+	getSuggested = async (id) => {
 		this.setState({ loading: true })
 		const data = await AsyncStorage.getItem('user')
 		const resp = JSON.parse(data)
-		const users = await recommendFollowers(resp.id)
+		this.setState({ currentUser: resp.id || id })
+		const users = await recommendFollowers(resp.id || id)
 		if (users) {
 			this.setState({ users, loading: false })
 		}
@@ -46,6 +59,12 @@ export default class Search extends PureComponent {
 		)
 	}
 
+	handleRefresh = async () => {
+		this.setState({ refreshing: true })
+		await this.getSuggested(this.state.currentUser)
+		this.setState({ refreshing: false })
+	}
+
 	render() {
 		const { users, loading } = this.state
 		return (
@@ -53,6 +72,7 @@ export default class Search extends PureComponent {
 				<Header title="Suggested" navigation={this.props.navigation} />
 				<ScrollView
 					contentContainerStyle={styles.scrollContainer}
+					showsVerticalScrollIndicator={false}
 					refreshControl={
 						<RefreshControl
 							refreshing={this.state.refreshing}

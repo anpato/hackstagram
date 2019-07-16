@@ -35,6 +35,10 @@ export default class Posts extends PureComponent {
 		}
 	}
 
+	componentWillUpdate() {
+		LayoutAnimation.easeInEaseOut()
+	}
+
 	getUserToken = async () => {
 		try {
 			const getItems = await AsyncStorage.getItem('user')
@@ -150,6 +154,7 @@ const styles = {
 		flex: 1
 	},
 	container: {
+		marginTop: 5,
 		color: '#f8f8f8',
 		alignItems: 'center',
 		justifyContent: 'center'
