@@ -91,3 +91,12 @@ export const recommendFollowers = async (id) => {
 		throw error
 	}
 }
+
+export const getPost = async (id) => {
+	try {
+		const resp = await api.get(`/posts/${id}`)
+		return resp.data
+	} catch (error) {
+		throw error
+	}
+}

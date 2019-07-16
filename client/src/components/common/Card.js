@@ -10,7 +10,7 @@ export { Card }
 const styles = {
 	containerStyle: {
 		borderWidth: 1,
-		borderRadius: 6,
+		borderRadius: 20,
 		borderColor: '#ddd',
 		borderBottomWidth: 0,
 		shadowColor: '#000',

@@ -27,14 +27,16 @@ const ProfileDetails = ({
 	const measureFollowers = () => {
 		if (!followers || !following) {
 			return (
-				<View style={styles.containerRow}>
-					<View style={styles.containerColumn}>
-						<Text>Followers</Text>
-						<Text>0</Text>
-					</View>
-					<View style={styles.containerColumn}>
-						<Text>Following</Text>
-						<Text>0</Text>
+				<View style={styles.containerDetails}>
+					<View style={styles.containerRow}>
+						<View style={styles.containerColumn}>
+							<Text>Followers</Text>
+							<Text>0</Text>
+						</View>
+						<View style={styles.containerColumn}>
+							<Text>Following</Text>
+							<Text>0</Text>
+						</View>
 					</View>
 				</View>
 			)
@@ -85,9 +87,6 @@ const styles = {
 	},
 	containerRow: {
 		flexDirection: 'row'
-		// alignSelf: 'flex-end',
-		// justifySelf: 'center'
-		// marginRight: 40
 	},
 	containerColumn: {
 		flexDirection: 'column',

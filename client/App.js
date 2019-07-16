@@ -6,14 +6,17 @@ import {
 	createBottomTabNavigator,
 	createSwitchNavigator
 } from 'react-navigation'
+import { Ionicons } from '@expo/vector-icons'
 import Home from './screens/Home'
 import CreateAccount from './screens/CreateAccount'
 import SignIn from './screens/SignIn'
 import Posts from './screens/Posts'
 import Profile from './screens/Profile'
-import { Ionicons } from '@expo/vector-icons'
-import Search from './screens/Search'
 import Settings from './screens/Settings'
+import Search from './screens/Search'
+import PostCard from './screens/PostCard'
+import Suggested from './screens/Suggested'
+import { Platform } from '@unimodules/core'
 
 const AppNavigator = createStackNavigator(
 	{
@@ -55,7 +58,19 @@ const ProfileStack = createStackNavigator(
 
 const SearchStack = createStackNavigator(
 	{
-		Search: Search
+		SearchHome: Search
+	},
+	{
+		headerMode: 'none',
+		navigationOptions: {
+			headerVisible: false
+		}
+	}
+)
+
+const SuggestedStack = createStackNavigator(
+	{
+		SuggestedHome: Suggested
 	},
 	{
 		headerMode: 'none',
@@ -67,7 +82,8 @@ const SearchStack = createStackNavigator(
 
 const PostStack = createStackNavigator(
 	{
-		Post: Posts
+		PostHome: Posts,
+		OnePost: PostCard
 	},
 	{
 		headerMode: 'none',
@@ -79,8 +95,9 @@ const PostStack = createStackNavigator(
 
 const TabNavigator = createBottomTabNavigator(
 	{
-		Post: PostStack,
-		Search: SearchStack,
+		PostTab: PostStack,
+		SearchTab: SearchStack,
+		SuggestedTab: SuggestedStack,
 		ProfileTab: ProfileStack
 	},
 	{
@@ -89,12 +106,31 @@ const TabNavigator = createBottomTabNavigator(
 				const { routeName } = navigation.state
 				let IconComponent = Ionicons
 				let iconName
-				if (routeName === 'Post') {
-					iconName = `ios-home${focused ? '' : ''}`
-				} else if (routeName === 'ProfileTab') {
-					iconName = `ios-person${focused ? '' : ''}`
-				} else if (routeName === 'Search') {
-					iconName = `ios-search`
+				switch (routeName) {
+					case 'PostTab':
+						iconName =
+							Platform.os === 'ios'
+								? `ios-home${focused ? '' : ''}`
+								: `md-home${focused ? '' : ''}`
+						break
+					case 'SearchTab':
+						iconName =
+							Platform.os === 'ios'
+								? `ios-search${focused ? '' : ''}`
+								: `md-search${focused ? '' : ''}`
+						break
+					case 'SuggestedTab':
+						iconName =
+							Platform.os === 'ios'
+								? `ios-people${focused ? '' : ''}`
+								: `md-people${focused ? '' : ''}`
+						break
+					case 'ProfileTab':
+						iconName =
+							Platform.os === 'ios'
+								? `ios-person${focused ? '' : ''}`
+								: `md-person${focused ? '' : ''}`
+						break
 				}
 				return <IconComponent name={iconName} size={32} color={tintColor} />
 			}

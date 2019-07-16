@@ -110,9 +110,11 @@ export default class Profile extends PureComponent {
 	}
 
 	renderItem = (post) => {
-		const { data } = this.state
-		const { item } = post
-		return <ProfilePosts image={item.image} />
+		const {
+			item: { id, image }
+		} = post
+		const { navigation } = this.props
+		return <ProfilePosts image={image} postId={id} navigation={navigation} />
 	}
 
 	render() {
@@ -141,7 +143,7 @@ export default class Profile extends PureComponent {
 						initialNumToRender={4}
 						onEndReachedThreshold={0.5}
 						renderItem={this.renderItem}
-						keyExtractor={(posts) => posts.id}
+						keyExtractor={(posts) => posts.id.toString()}
 					/>
 				)}
 			</View>

@@ -1,11 +1,12 @@
 import React from 'react'
-import { View, Image } from 'react-native'
+import { TouchableOpacity, Image } from 'react-native'
 
-const ProfilePosts = ({ image }) => {
+const ProfilePosts = ({ image, postId, navigation }) => {
 	return (
-		<View>
+		<TouchableOpacity
+			onPress={() => navigation.push('OnePost', { postId: postId })}>
 			<Image source={{ uri: image }} style={styles.imageStyle} />
-		</View>
+		</TouchableOpacity>
 	)
 }
 export default ProfilePosts

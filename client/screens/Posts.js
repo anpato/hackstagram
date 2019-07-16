@@ -25,9 +25,9 @@ export default class Posts extends PureComponent {
 		}
 	}
 
-	// componentWillUpdate() {
-	// LayoutAnimation.easeInEaseOut()
-	// }
+	componentWillUpdate() {
+		LayoutAnimation.easeInEaseOut()
+	}
 
 	async componentDidMount() {
 		try {
@@ -77,35 +77,35 @@ export default class Posts extends PureComponent {
 				user: { username, posts }
 			}
 		} = post
-		for (let i = 0; i < posts.length; i++) {
+		return posts.map((post) => {
 			return (
-				<Card key={posts[i].id}>
+				<Card key={post.id}>
 					<CardSection>
 						<TouchableOpacity
-							key={posts[i].userId}
+							key={post.userId}
 							onPress={() =>
-								navigation.navigate('ProfileScreen', {
-									userId: posts[i].userId
+								navigation.push('ProfileScreen', {
+									userId: post.userId
 								})
 							}>
 							<Text>{username}</Text>
 						</TouchableOpacity>
 					</CardSection>
-					<Image source={{ uri: posts[i].image }} style={styles.image} />
+					<Image source={{ uri: post.image }} style={styles.image} />
 					<CardSection>
-						<Text>{posts[i].description}</Text>
+						<Text>{post.description}</Text>
 					</CardSection>
 					<CardSection>
 						<View>
-							<Text>Likes: {posts[i].postLikes.length}</Text>
+							<Text>Likes: {post.postLikes.length}</Text>
 							<TouchableOpacity>
-								<Text>{`${posts[i].comments.length} comments`}</Text>
+								<Text>{`${post.comments.length} comments`}</Text>
 							</TouchableOpacity>
 						</View>
 					</CardSection>
 				</Card>
 			)
-		}
+		})
 	}
 
 	handleRefresh = async () => {
@@ -128,7 +128,7 @@ export default class Posts extends PureComponent {
 					initialNumToRender={1}
 					onEndReachedThreshold={0.5}
 					renderItem={this.renderItem}
-					keyExtractor={(posts) => posts.id}
+					keyExtractor={(posts) => posts.id.toString()}
 				/>
 			)
 		}
@@ -162,7 +162,6 @@ const styles = {
 		color: '#f8f8f8',
 		alignItems: 'center',
 		justifyContent: 'center'
-		// backgroundColor: '#6d6d6d'
 	},
 	image: {
 		height: 200,

@@ -114,7 +114,6 @@ userRouter.post('/posts/users', async (req, res) => {
 		const users = await User.findAll({ where: {} })
 		for (let i = 0; i < users.length; i++) {
 			for (let j = 0; j < fakePosts.length; j++) {
-				// console.log(fakePosts[j])
 				const posts = await Post.create({
 					title: fakePosts[j].title,
 					description: fakePosts[j].description,
