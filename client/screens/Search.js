@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import uuid from 'uuid/v4'
 import {
 	Image,
@@ -12,7 +12,7 @@ import { Header, Card, CardSection } from '../src/components/common'
 import { recommendFollowers } from '../src/services/apiService'
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler'
 import EmptyProfileImage from '../src/assets/emptyProfile.jpg'
-export default class Search extends Component {
+export default class Search extends PureComponent {
 	constructor() {
 		super()
 		this.state = {
@@ -63,8 +63,14 @@ export default class Search extends Component {
 			</TouchableOpacity>
 		)
 	}
+	keyExtractor = () => {
+		const { users } = this.state
+		const ids = users.map((user) => user.id)
+		return ids
+	}
 
 	render() {
+		const { users } = this.state
 		return (
 			<View style={styles.container}>
 				<Header title="Suggested" navigation={this.props.navigation} />
@@ -81,12 +87,12 @@ export default class Search extends Component {
 						numColumns={2}
 						showsVerticalScrollIndicator={false}
 						contentContainerStyle={styles.listStyle}
-						maxToRenderPerBatch={2}
-						initialNumToRender={4}
+						maxToRenderPerBatch={1}
+						initialNumToRender={1}
 						onEndReachedThreshold={0.5}
-						data={this.state.users}
+						data={users}
 						renderItem={this.renderItem}
-						keyExtractor={() => uuid()}
+						keyExtractor={(users) => users.id}
 					/>
 				</ScrollView>
 			</View>

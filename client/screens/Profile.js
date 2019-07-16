@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import {
 	ScrollView,
 	View,
@@ -10,17 +10,18 @@ import {
 } from 'react-native'
 import uuid from 'uuid/v4'
 import ProfileDetails from '../src/components/ProfileDetails'
-import { Button, Spinner, Header } from '../src/components/common'
+import { Spinner, Header } from '../src/components/common'
 import {
 	getUser,
 	getFollowersAmount,
 	getUserPost
 } from '../src/services/apiService'
 import ProfilePosts from '../src/components/ProfilePosts'
-export default class Profile extends Component {
+export default class Profile extends PureComponent {
 	constructor() {
 		super()
 		this.state = {
+			currentUser: null,
 			userId: null,
 			userData: [],
 			followers: [],
@@ -46,18 +47,18 @@ export default class Profile extends Component {
 	fetchUserProfile = async () => {
 		const { navigation } = this.props
 		const userId = navigation.getParam('userId')
-		this.setState({ userId })
 		if (userId) {
 			const userData = await getUser(userId)
 			const followers = await getFollowersAmount(userId)
 			const posts = await getUserPost(userId)
 			this.setState({ userData, followers, posts })
 			if (posts) {
-				this.setState({ data: true, userId: null })
+				this.setState({ data: true })
 			}
 		} else {
 			const data = await AsyncStorage.getItem('user')
 			const user = JSON.parse(data)
+			this.setState({ currentUser: user.id })
 			const userData = await getUser(user.id)
 			const followers = await getFollowersAmount(user.id)
 			const posts = await getUserPost(user.id)
@@ -75,19 +76,34 @@ export default class Profile extends Component {
 	}
 
 	renderUserData = () => {
-		const { userData, followers } = this.state
+		const { userData, followers, currentUser, userId } = this.state
 
 		if (userData) {
-			return (
-				<ProfileDetails
-					userId={userData.id}
-					username={userData.username}
-					profileImage={userData.profileImage}
-					followers={followers[0]}
-					following={followers[1]}
-					posts={userData.posts}
-				/>
-			)
+			if (currentUser) {
+				return (
+					<ProfileDetails
+						userId={userData.id}
+						username={userData.username}
+						profileImage={userData.profileImage}
+						followers={followers[0]}
+						following={followers[1]}
+						posts={userData.posts}
+						currentUser={currentUser}
+					/>
+				)
+			} else {
+				return (
+					<ProfileDetails
+						userId={userData.id}
+						username={userData.username}
+						profileImage={userData.profileImage}
+						followers={followers[0]}
+						following={followers[1]}
+						posts={userData.posts}
+						userId={userId}
+					/>
+				)
+			}
 		} else {
 			return <Spinner />
 		}
@@ -125,7 +141,7 @@ export default class Profile extends Component {
 						initialNumToRender={4}
 						onEndReachedThreshold={0.5}
 						renderItem={this.renderItem}
-						keyExtractor={() => uuid()}
+						keyExtractor={(posts) => posts.id}
 					/>
 				)}
 			</View>

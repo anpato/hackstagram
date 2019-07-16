@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import {
 	View,
 	Text,
@@ -13,7 +13,7 @@ import { Spinner, Header, Card, CardSection } from '../src/components/common'
 import { getFollowersPost } from '../src/services/apiService'
 import uuid from 'uuid/v4'
 
-export default class Posts extends React.PureComponent {
+export default class Posts extends PureComponent {
 	constructor() {
 		super()
 		this.state = {
@@ -25,9 +25,9 @@ export default class Posts extends React.PureComponent {
 		}
 	}
 
-	componentWillUpdate() {
-		LayoutAnimation.easeInEaseOut()
-	}
+	// componentWillUpdate() {
+	// LayoutAnimation.easeInEaseOut()
+	// }
 
 	async componentDidMount() {
 		try {
@@ -71,6 +71,7 @@ export default class Posts extends React.PureComponent {
 	}
 
 	renderItem = (post) => {
+		const { navigation } = this.props
 		const {
 			item: {
 				user: { username, posts }
@@ -80,7 +81,13 @@ export default class Posts extends React.PureComponent {
 			return (
 				<Card key={posts[i].id}>
 					<CardSection>
-						<TouchableOpacity key={posts[i].userId}>
+						<TouchableOpacity
+							key={posts[i].userId}
+							onPress={() =>
+								navigation.navigate('ProfileScreen', {
+									userId: posts[i].userId
+								})
+							}>
 							<Text>{username}</Text>
 						</TouchableOpacity>
 					</CardSection>
@@ -114,12 +121,14 @@ export default class Posts extends React.PureComponent {
 		} else {
 			return (
 				<FlatList
-					maxToRenderPerBatch={2}
 					data={posts}
-					initialNumToRender={4}
+					showsVerticalScrollIndicator={false}
+					contentContainerStyle={styles.container}
+					maxToRenderPerBatch={1}
+					initialNumToRender={1}
 					onEndReachedThreshold={0.5}
 					renderItem={this.renderItem}
-					keyExtractor={() => uuid()}
+					keyExtractor={(posts) => posts.id}
 				/>
 			)
 		}

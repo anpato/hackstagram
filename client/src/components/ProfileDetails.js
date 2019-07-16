@@ -6,8 +6,24 @@ const ProfileDetails = ({
 	profileImage,
 	followers,
 	following,
-	posts
+	posts,
+	userId
 }) => {
+	const renderFollowButton = () => {
+		if (!userId) {
+			return (
+				<TouchableOpacity style={styles.button}>
+					<Text style={styles.buttonText}>Follow</Text>
+				</TouchableOpacity>
+			)
+		} else {
+			return (
+				<TouchableOpacity style={styles.button}>
+					<Text style={styles.buttonText}>Settings</Text>
+				</TouchableOpacity>
+			)
+		}
+	}
 	const measureFollowers = () => {
 		if (!followers || !following) {
 			return (
@@ -39,9 +55,7 @@ const ProfileDetails = ({
 							<Text>{following.length}</Text>
 						</View>
 					</View>
-					<TouchableOpacity style={styles.button}>
-						<Text style={styles.buttonText}>Follow</Text>
-					</TouchableOpacity>
+					{renderFollowButton()}
 				</View>
 			)
 		}
