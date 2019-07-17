@@ -22,7 +22,7 @@ export default class PostCard extends PureComponent {
 
 	render() {
 		const {
-			postData: { image, title, posLikes }
+			postData: { image, title, postLikes }
 		} = this.state
 		return (
 			<View>

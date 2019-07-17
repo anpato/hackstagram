@@ -2,34 +2,24 @@ const express = require('express')
 const searchRouter = express.Router()
 const { User, Post } = require('../database/models')
 
-searchRouter.get('/:search_query', async (req, res) => {
+searchRouter.post('/:search_query', async (req, res) => {
 	try {
+		const users = []
 		const findUser = await User.findAll()
 		const findPosts = await Post.findAll()
-		const searchType = req.params.type_of
 		const query = req.params.search_query.toLowerCase()
-		console.log(query.length)
-		if (query.length > 3) {
-			if (findUser || findPosts) {
-				const users = findUser.filter((user) => {
-					return user.dataValues.skills.filter((skill) => {
-						if (
-							user.dataValues.username.toLowerCase().includes(query) ||
-							skill.toLowerCase().includes(query)
-						) {
-							return user
-						}
-					})
-				})
-				const posts = findPosts.filter((post) => {
-					if (post.title.toLowerCase().includes(query)) return post
-				})
-				let data = {
-					users: users,
-					posts: posts
+		if (findUser) {
+			for (let i = 0; i < findUser.length; i++) {
+				for (let j = 0; j < findUser[i].dataValues.skills.length; j++) {
+					if (findUser[i].dataValues.skills[j].toLowerCase() === query) {
+						users.push(findUser[i])
+					}
 				}
-				res.json({ users, posts })
 			}
+			const filteredUsernames = findUser.filter((user) =>
+				user.dataValues.username.includes(query)
+			)
+			res.send({ users, filteredUsernames })
 		}
 	} catch (error) {
 		throw error

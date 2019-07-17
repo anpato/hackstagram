@@ -8,12 +8,14 @@ import {
 } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
-const Header = ({ title, navigation, search }) => {
+const Header = ({ title, navigation, search, onChangeText }) => {
 	const [isFocused, setFocus] = useState(false)
+
 	handleLogOut = async () => {
 		await AsyncStorage.clear()
 		navigation.navigate('Home')
 	}
+
 	handleRenderSearch = () => {
 		if (search === true) {
 			return (
@@ -22,6 +24,7 @@ const Header = ({ title, navigation, search }) => {
 					style={styles.title}
 					onBlur={() => setFocus(false)}
 					onFocus={() => setFocus(true)}
+					onChangeText={(query) => onChangeText(query)}
 				/>
 			)
 		} else {

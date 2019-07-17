@@ -56,6 +56,15 @@ export const getUser = async (id) => {
 	}
 }
 
+export const getAllUsers = async () => {
+	try {
+		const resp = await api.get('/users')
+		return resp.data
+	} catch (error) {
+		throw error
+	}
+}
+
 export const getFollowersAmount = async (id) => {
 	try {
 		const followers = await api.get(`/users/${id}/followers`)
@@ -101,9 +110,9 @@ export const getPost = async (id) => {
 	}
 }
 
-export const search = async (searchType, query) => {
+export const search = async (query) => {
 	try {
-		const resp = await api.get(`/search/${searchType}/${query}`)
+		const resp = await api.post(`/search/${query}`)
 		return resp.data
 	} catch (error) {
 		throw error
