@@ -1,18 +1,44 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, AsyncStorage } from 'react-native'
+import React, { useState } from 'react'
+import {
+	View,
+	Text,
+	TouchableOpacity,
+	AsyncStorage,
+	TextInput
+} from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
-const Header = ({ title, navigation }) => {
+const Header = ({ title, navigation, search }) => {
+	const [isFocused, setFocus] = useState(false)
 	handleLogOut = async () => {
 		await AsyncStorage.clear()
 		navigation.navigate('Home')
 	}
+	handleRenderSearch = () => {
+		if (search === true) {
+			return (
+				<TextInput
+					placeholder="Search"
+					style={styles.title}
+					onBlur={() => setFocus(false)}
+					onFocus={() => setFocus(true)}
+				/>
+			)
+		} else {
+			return <Text style={styles.title}>{title}</Text>
+		}
+	}
+
 	return (
 		<View style={styles.container}>
 			<TouchableOpacity style={styles.camera}>
-				<Ionicons name="ios-camera" size={32} style={styles.iconCamera} />
+				<Ionicons
+					name="ios-camera"
+					size={32}
+					style={isFocused === true ? styles.cameraHidden : styles.iconCamera}
+				/>
 			</TouchableOpacity>
-			<Text style={styles.title}>{title}</Text>
+			{handleRenderSearch()}
 			<TouchableOpacity onPress={handleLogOut} style={styles.logout}>
 				<Ionicons name="ios-log-out" size={32} style={styles.iconSettings} />
 			</TouchableOpacity>
@@ -32,7 +58,11 @@ const styles = {
 		shadowOpacity: 0.5
 	},
 	camera: {
-		justifySelf: 'flex-start'
+		justifySelf: 'flex-start',
+		opacity: 1
+	},
+	cameraHidden: {
+		opacity: 0
 	},
 	logout: {
 		justifySelf: 'flex-end'

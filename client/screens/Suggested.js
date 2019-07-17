@@ -30,7 +30,7 @@ export default class Search extends PureComponent {
 	}
 
 	componentWillUpdate() {
-		LayoutAnimation.easeInEaseOut()
+		LayoutAnimation.spring()
 	}
 
 	getSuggested = async (id) => {

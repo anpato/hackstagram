@@ -24,7 +24,7 @@ const main = async () => {
 		username: 'tester',
 		email: 'tester@mail.com',
 		password: '1234',
-		skills: ['React', 'Python', 'Mongo']
+		skills: ['react', 'Python', 'Mongo']
 	})
 
 	const user1 = await User.create({

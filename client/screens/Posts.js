@@ -11,7 +11,6 @@ import {
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
 import { Spinner, Header, Card, CardSection } from '../src/components/common'
 import { getFollowersPost } from '../src/services/apiService'
-import uuid from 'uuid/v4'
 import PostCard from '../src/components/PostCard'
 
 export default class Posts extends PureComponent {
