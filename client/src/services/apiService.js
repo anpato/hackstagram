@@ -100,3 +100,12 @@ export const getPost = async (id) => {
 		throw error
 	}
 }
+
+export const search = async (searchType, query) => {
+	try {
+		const resp = await api.get(`/search/${searchType}/${query}`)
+		return resp.data
+	} catch (error) {
+		throw error
+	}
+}
