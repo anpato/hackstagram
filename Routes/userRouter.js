@@ -117,7 +117,8 @@ userRouter.post('/posts/users', async (req, res) => {
 				const posts = await Post.create({
 					title: fakePosts[j].title,
 					description: fakePosts[j].description,
-					image: fakePosts[j].image
+					image: fakePosts[j].image,
+					likes: fakePosts[j].likes
 				})
 				await posts.setUser(users[i])
 			}
@@ -129,22 +130,37 @@ userRouter.post('/posts/users', async (req, res) => {
 })
 
 userRouter.get('/:id/suggested', async (req, res) => {
+	console.log(typeof req.params.id)
 	try {
-		const findUser = await User.findByPk(req.params.id)
+		const findUser = await User.findByPk(req.params.id, {
+			include: [
+				{
+					model: Follower,
+					as: 'following'
+				}
+			]
+		})
 		const findUsers = await User.findAll()
 		let users = []
+		let followerIds = []
 		if (findUser) {
+			for (let k = 0; k < findUser.following.length; k++) {
+				if (
+					!followerIds.includes(findUser.following[k].dataValues.follower_id)
+				) {
+					followerIds.push(findUser.following[k].dataValues.follower_id)
+				}
+			}
+
 			for (let i = 0; i < findUser.skills.length; i++) {
-				if (findUsers) {
-					for (let j = 0; j < findUsers.length; j++) {
-						if (
-							findUsers[j].skills.includes(findUser.skills[i]) &&
-							findUsers[j].id !== findUser.id
-						) {
-							if (!users.includes(findUsers[j])) {
-								users.push(findUsers[j])
-							}
-						}
+				for (let j = 0; j < findUsers.length; j++) {
+					if (
+						findUsers[j].skills.includes(findUser.skills[i]) &&
+						findUsers[j].id !== findUser.id &&
+						!followerIds.includes(findUsers[j].id) &&
+						!users.includes(findUsers[j])
+					) {
+						users.push(findUsers[j])
 					}
 				}
 			}

@@ -60,14 +60,10 @@ const Post = db.define('post', {
 	},
 	description: {
 		type: Sequelize.TEXT
-	}
+	},
+	likes: Sequelize.INTEGER
 })
 
-const PostLike = db.define('postLike', {
-	likes: {
-		type: Sequelize.INTEGER
-	}
-})
 
 const Comment = db.define('comment', {
 	title: {
@@ -75,11 +71,6 @@ const Comment = db.define('comment', {
 	}
 })
 
-const CommentLike = db.define('commentLike', {
-	likes: {
-		type: Sequelize.INTEGER
-	}
-})
 
 User.beforeBulkCreate(async (user, options) => {
 	for (let i = 0; i < user.length; i++) {
@@ -101,30 +92,20 @@ Follower.belongsTo(User, {
 })
 
 User.hasMany(Post, { onDelete: 'cascade' })
-User.hasMany(PostLike, { onDelete: 'cascade' })
 User.hasMany(Comment, { onDelete: 'cascade' })
-User.hasMany(CommentLike, { onDelete: 'cascade' })
 User.hasMany(Follower, { as: 'following' })
 Post.belongsTo(User)
 Post.hasMany(Comment)
-Post.hasMany(PostLike)
 
-PostLike.belongsTo(Post)
-PostLike.belongsTo(User)
 
 Comment.belongsTo(User)
 Comment.belongsTo(Post)
-Comment.hasMany(CommentLike)
 
-CommentLike.belongsTo(Comment)
-CommentLike.belongsTo(User)
 
 module.exports = {
 	User,
 	Comment,
-	CommentLike,
 	Post,
-	PostLike,
 	Follower,
 	db
 }

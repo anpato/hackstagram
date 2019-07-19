@@ -1,5 +1,6 @@
 const Axios = require('axios')
 import { IP_ADDRESS } from 'react-native-dotenv'
+
 const JwtToken = 'token'
 const BASE_URL = `http://${IP_ADDRESS}:3001`
 
@@ -84,6 +85,7 @@ export const getFollowersPost = async (id) => {
 }
 
 export const recommendFollowers = async (id) => {
+	console.log(id)
 	try {
 		const resp = await api.get(`/users/${id}/suggested`)
 		return resp.data

@@ -6,8 +6,8 @@ const PostCard = ({
 	username,
 	userId,
 	image,
+	likes,
 	description,
-	postLikes,
 	comments,
 	navigation
 }) => {
@@ -30,7 +30,7 @@ const PostCard = ({
 			</CardSection>
 			<CardSection>
 				<View style={styles.subContent}>
-					<Text>{postLikes.length} Likes</Text>
+					<Text>{likes} Likes</Text>
 					<TouchableOpacity>
 						{comments.length === 0 ? (
 							<Text>{`${comments.length} Comments`}</Text>

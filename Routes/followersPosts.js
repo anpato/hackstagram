@@ -10,7 +10,6 @@ const {
 
 followersPostRouter.get('/posts/:user_id', async (req, res) => {
 	try {
-		let data
 		const followers = await Follower.findAll({
 			where: {
 				user_id: req.params.user_id
@@ -26,9 +25,6 @@ followersPostRouter.get('/posts/:user_id', async (req, res) => {
 							include: [
 								{
 									model: Comment
-								},
-								{
-									model: PostLike
 								}
 							]
 						}

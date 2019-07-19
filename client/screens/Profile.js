@@ -18,6 +18,7 @@ import {
 	getFollowerCount
 } from '../src/services/apiService'
 import ProfilePosts from '../src/components/ProfilePosts'
+
 export default class Profile extends PureComponent {
 	constructor() {
 		super()
@@ -75,6 +76,7 @@ export default class Profile extends PureComponent {
 				followingCount: count.following,
 				posts
 			})
+			console.log(posts)
 			if (posts) {
 				this.setState({ data: true })
 			}

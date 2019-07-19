@@ -87,6 +87,7 @@ export default class Posts extends PureComponent {
 						userId={posts[i].userId}
 						image={posts[i].image}
 						navigation={navigation}
+						likes={posts[i].likes}
 					/>
 				)
 			}

@@ -1,20 +1,11 @@
 const express = require('express')
 const postsRouter = express.Router()
-const {
-	Post,
-	PostLike,
-	Comment,
-	CommentLike,
-	User
-} = require('../database/models')
+const { Post, Comment, User } = require('../database/models')
 
 postsRouter.get('/:post_id', async (req, res) => {
 	try {
 		const post = await Post.findByPk(req.params.post_id, {
-			include: [
-				{ model: PostLike },
-				{ model: Comment, include: [{ model: CommentLike }], include: [User] }
-			]
+			include: [{ model: Comment, include: [User] }]
 		})
 		res.send(post)
 	} catch (error) {
