@@ -65,15 +65,6 @@ export const getAllUsers = async () => {
 	}
 }
 
-export const getFollowersAmount = async (id) => {
-	try {
-		const followers = await api.get(`/users/${id}/followers`)
-		return followers.data
-	} catch (error) {
-		throw error
-	}
-}
-
 export const getUserPost = async (id) => {
 	try {
 		const resp = await api.get(`/users/${id}`)
@@ -121,8 +112,16 @@ export const search = async (query) => {
 
 export const followUser = async (userId, followerId) => {
 	try {
-		const follow = api.post(`/users/${ userId }/follow/${ followerId }`)
-		console.log(follow)
+		const follow = api.post(`/users/${userId}/follow/${followerId}`)
+	} catch (error) {
+		throw error
+	}
+}
+
+export const getFollowerCount = async (userId) => {
+	try {
+		const count = await api.get(`/followers/${userId}`)
+		return count.data
 	} catch (error) {
 		throw error
 	}

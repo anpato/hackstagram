@@ -30,11 +30,13 @@ const PostCard = ({
 			</CardSection>
 			<CardSection>
 				<View style={styles.subContent}>
-					<Text style={styles.details}>Likes: {postLikes.length}</Text>
+					<Text>{postLikes.length} Likes</Text>
 					<TouchableOpacity>
-						<Text style={styles.details}>{`View All ${
-							comments.length
-						} comments`}</Text>
+						{comments.length === 0 ? (
+							<Text>{`${comments.length} Comments`}</Text>
+						) : (
+							<Text>{`View All ${comments.length} Comments`}</Text>
+						)}
 					</TouchableOpacity>
 				</View>
 			</CardSection>

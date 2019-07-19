@@ -4,8 +4,8 @@ import { View, Text, TouchableOpacity, Button, Image } from 'react-native'
 const ProfileDetails = ({
 	username,
 	profileImage,
-	followers,
-	following,
+	followerCount,
+	followingCount,
 	posts,
 	userId
 }) => {
@@ -25,42 +25,25 @@ const ProfileDetails = ({
 		}
 	}
 	const measureFollowers = () => {
-		if (!followers || !following) {
-			return (
-				<View style={styles.containerDetails}>
-					<View style={styles.containerRow}>
-						<View style={styles.containerColumn}>
-							<Text>Followers</Text>
-							<Text>0</Text>
-						</View>
-						<View style={styles.containerColumn}>
-							<Text>Following</Text>
-							<Text>0</Text>
-						</View>
+		return (
+			<View style={styles.containerDetails}>
+				<View style={styles.containerRow}>
+					<View style={styles.containerColumn}>
+						<Text>Posts</Text>
+						<Text>{posts ? posts.length : 0}</Text>
+					</View>
+					<View style={styles.containerColumn}>
+						<Text>Followers</Text>
+						<Text>{followerCount}</Text>
+					</View>
+					<View style={[styles.containerColumn, styles.containerColumnEnd]}>
+						<Text>Following</Text>
+						<Text>{followingCount}</Text>
 					</View>
 				</View>
-			)
-		} else {
-			return (
-				<View style={styles.containerDetails}>
-					<View style={styles.containerRow}>
-						<View style={styles.containerColumn}>
-							<Text>Posts</Text>
-							<Text>{posts.length}</Text>
-						</View>
-						<View style={styles.containerColumn}>
-							<Text>Followers</Text>
-							<Text>{followers.length}</Text>
-						</View>
-						<View style={[styles.containerColumn, styles.containerColumnEnd]}>
-							<Text>Following</Text>
-							<Text>{following.length}</Text>
-						</View>
-					</View>
-					{renderFollowButton()}
-				</View>
-			)
-		}
+				{renderFollowButton()}
+			</View>
+		)
 	}
 	return (
 		<View style={styles.container}>

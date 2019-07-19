@@ -13,8 +13,9 @@ import ProfileDetails from '../src/components/ProfileDetails'
 import { Spinner, Header } from '../src/components/common'
 import {
 	getUser,
-	getFollowersAmount,
-	getUserPost
+	getUserPost,
+	followers,
+	getFollowerCount
 } from '../src/services/apiService'
 import ProfilePosts from '../src/components/ProfilePosts'
 export default class Profile extends PureComponent {
@@ -24,7 +25,8 @@ export default class Profile extends PureComponent {
 			currentUser: null,
 			userId: null,
 			userData: [],
-			followers: [],
+			followerCount: null,
+			followingCount: null,
 			posts: [],
 			refreshing: false,
 			data: false
@@ -49,9 +51,14 @@ export default class Profile extends PureComponent {
 		const userId = navigation.getParam('userId')
 		if (userId) {
 			const userData = await getUser(userId)
-			const followers = await getFollowersAmount(userId)
+			const count = await getFollowerCount(userId)
 			const posts = await getUserPost(userId)
-			this.setState({ userData, followers, posts })
+			this.setState({
+				userData,
+				followerCount: count.followers,
+				followingCount: count.following,
+				posts
+			})
 			if (posts) {
 				this.setState({ data: true })
 			}
@@ -60,9 +67,14 @@ export default class Profile extends PureComponent {
 			const user = JSON.parse(data)
 			this.setState({ currentUser: user.id })
 			const userData = await getUser(user.id)
-			const followers = await getFollowersAmount(user.id)
+			const count = await getFollowerCount(user.id)
 			const posts = await getUserPost(user.id)
-			this.setState({ userData, followers, posts })
+			this.setState({
+				userData,
+				followerCount: count.followers,
+				followingCount: count.following,
+				posts
+			})
 			if (posts) {
 				this.setState({ data: true })
 			}
@@ -76,8 +88,14 @@ export default class Profile extends PureComponent {
 	}
 
 	renderUserData = () => {
-		const { userData, followers, currentUser, userId } = this.state
-
+		const {
+			userData,
+			followerCount,
+			followingCount,
+			currentUser,
+			userId,
+			posts
+		} = this.state
 		if (userData) {
 			if (currentUser) {
 				return (
@@ -85,9 +103,9 @@ export default class Profile extends PureComponent {
 						userId={userData.id}
 						username={userData.username}
 						profileImage={userData.profileImage}
-						followers={followers[0]}
-						following={followers[1]}
-						posts={userData.posts}
+						followerCount={followerCount}
+						followingCount={followingCount}
+						posts={posts}
 						currentUser={currentUser}
 					/>
 				)
@@ -97,8 +115,8 @@ export default class Profile extends PureComponent {
 						userId={userData.id}
 						username={userData.username}
 						profileImage={userData.profileImage}
-						followers={followers[0]}
-						following={followers[1]}
+						followerCount={followerCount}
+						followingCount={followingCount}
 						posts={userData.posts}
 						userId={userId}
 					/>

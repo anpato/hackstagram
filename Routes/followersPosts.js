@@ -44,12 +44,22 @@ followersPostRouter.get('/posts/:user_id', async (req, res) => {
 
 followersPostRouter.get('/:user_id', async (req, res) => {
 	try {
-		const followers = await Follower.findAll({
+		const following = await Follower.findAndCountAll({
 			where: {
 				userId: req.params.user_id
 			}
 		})
-		res.send(followers)
+
+		const followers = await Follower.findAndCountAll({
+			where: {
+				follower_id: req.params.user_id
+			}
+		})
+		let data = {
+			following: following.count,
+			followers: followers.count
+		}
+		res.send(data)
 	} catch (error) {
 		throw error
 	}
