@@ -21,7 +21,7 @@ const PostCard = ({
 							userId: userId
 						})
 					}>
-					<Text>{username}</Text>
+					<Text style={styles.username}>{username}</Text>
 				</TouchableOpacity>
 			</CardSection>
 			<Image source={{ uri: image }} style={styles.image} />
@@ -30,9 +30,11 @@ const PostCard = ({
 			</CardSection>
 			<CardSection>
 				<View style={styles.subContent}>
-					<Text>Likes: {postLikes.length}</Text>
+					<Text style={styles.details}>Likes: {postLikes.length}</Text>
 					<TouchableOpacity>
-						<Text>{`View All ${comments.length} comments`}</Text>
+						<Text style={styles.details}>{`View All ${
+							comments.length
+						} comments`}</Text>
 					</TouchableOpacity>
 				</View>
 			</CardSection>
@@ -52,6 +54,13 @@ const styles = {
 		flexDirection: 'row',
 		flex: 1,
 		justifyContent: 'space-between'
+	},
+	username: {
+		fontSize: 16,
+		fontWeight: '700'
+	},
+	details: {
+		fontSize: 15
 	}
 }
 

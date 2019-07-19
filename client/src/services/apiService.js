@@ -118,3 +118,12 @@ export const search = async (query) => {
 		throw error
 	}
 }
+
+export const followUser = async (userId, followerId) => {
+	try {
+		const follow = api.post(`/users/${ userId }/follow/${ followerId }`)
+		console.log(follow)
+	} catch (error) {
+		throw error
+	}
+}

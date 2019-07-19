@@ -1,15 +1,14 @@
 import React, { PureComponent } from 'react'
 import {
 	View,
-	Text,
 	AsyncStorage,
 	FlatList,
-	Image,
 	LayoutAnimation,
-	RefreshControl
+	RefreshControl,
+	Text
 } from 'react-native'
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler'
-import { Spinner, Header, Card, CardSection } from '../src/components/common'
+import { ScrollView } from 'react-native-gesture-handler'
+import { Spinner, Header } from '../src/components/common'
 import { getFollowersPost } from '../src/services/apiService'
 import PostCard from '../src/components/PostCard'
 
@@ -36,7 +35,7 @@ export default class Posts extends PureComponent {
 	}
 
 	componentWillUpdate() {
-		LayoutAnimation.spring()
+		LayoutAnimation.easeInEaseOut()
 	}
 
 	getUserToken = async () => {
@@ -77,19 +76,22 @@ export default class Posts extends PureComponent {
 				user: { username, posts }
 			}
 		} = post
-
-		for (let i = 0; i < posts.length; i++) {
-			return (
-				<PostCard
-					key={posts[i].id}
-					comments={posts[i].comments}
-					postLikes={posts[i].postLikes}
-					username={username}
-					userId={posts[i].userId}
-					image={posts[i].image}
-					navigation={navigation}
-				/>
-			)
+		if (post) {
+			for (let i = 0; i < posts.length; i++) {
+				return (
+					<PostCard
+						key={posts[i].id}
+						comments={posts[i].comments}
+						postLikes={posts[i].postLikes}
+						username={username}
+						userId={posts[i].userId}
+						image={posts[i].image}
+						navigation={navigation}
+					/>
+				)
+			}
+		} else {
+			return <Text>No Posts</Text>
 		}
 	}
 

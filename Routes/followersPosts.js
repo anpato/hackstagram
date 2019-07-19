@@ -36,31 +36,47 @@ followersPostRouter.get('/posts/:user_id', async (req, res) => {
 				}
 			]
 		})
-
-		// for (let i = 0; i < followers.length; i++) {
-		// 	const posts = await Post.findAll({
-		// 		where: {
-		// 			userId: followers[i].follower_id
-		// 		},
-		// 		include: [
-		// 			{
-		// 				model: User,
-		// 				attributes: ['username']
-		// 			},
-		// 			{
-		// 				model: Comment
-		// 			},
-		// 			{
-		// 				model: PostLike
-		// 			}
-		// 		]
-		// 	})
-		// 	data = posts
-		// }
 		res.send(followers)
 	} catch (error) {
 		throw error
 	}
 })
+
+followersPostRouter.get('/:user_id', async (req, res) => {
+	try {
+		const followers = await Follower.findAll({
+			where: {
+				userId: req.params.user_id
+			}
+		})
+		res.send(followers)
+	} catch (error) {
+		throw error
+	}
+})
+
+followersPostRouter.delete(
+	'/:user_id/unfollow/:follower_id',
+	async (req, res) => {
+		try {
+			const removeFollower = await Follower.destroy({
+				where: {
+					userId: req.params.user_id,
+					follower_id: req.params.follower_id
+				}
+			})
+			if (removeFollower) {
+				const getFollowers = await Follower.findAll({
+					where: {
+						userId: req.params.user_id
+					}
+				})
+				res.send(getFollowers)
+			}
+		} catch (error) {
+			throw error
+		}
+	}
+)
 
 module.exports = followersPostRouter

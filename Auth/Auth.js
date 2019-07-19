@@ -27,7 +27,7 @@ passport.use(
 		async (req, username, password, done) => {
 			try {
 				const user = await User.create({
-					username: username,
+					username: username.toLowerCase(),
 					password: password,
 					email: req.body.email,
 					firstName: req.body.firstName,
@@ -53,7 +53,6 @@ passport.use(
 			passwordField: 'password'
 		},
 		async (username, password, done) => {
-			console.log('***username***', username)
 			try {
 				// finding users from db
 				const user = await User.findOne({
