@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, Image } from 'react-native'
+import { View, Text, FlatList, ScrollView } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
-import { Input, Button, AccountCreated } from '../src/components/common'
+import {
+	Input,
+	Button,
+	AccountCreated,
+	CardSection,
+	Card
+} from '../src/components/common'
 import { signup, getUsernames, getEmails } from '../src/services/apiService'
 
 export default class CreateAccount extends Component {
@@ -16,12 +22,12 @@ export default class CreateAccount extends Component {
 			confirmPassword: '',
 			skill: '',
 			skills: [],
-			data: [],
+			data: {},
 			takenUsernames: [],
 			takenEmails: [],
 			isTaken: false,
 			step: 1,
-			timer: 10
+			timer: 5
 		}
 	}
 
@@ -57,21 +63,16 @@ export default class CreateAccount extends Component {
 		}
 	}
 
-	createData = () => {
-		const { firstName, lastName, email, username, skills } = this.state
+	verifyData = () => {
+		this.nextStep()
+		const { firstName, lastName, email, username } = this.state
 		let userInfo = [
 			{ key: firstName },
 			{ key: lastName },
 			{ key: email },
 			{ key: username }
 		]
-
-		return skills.map((skill) => {
-			userInfo.push({ key: skill })
-			return this.setState({
-				data: [...this.state.data, ...userInfo]
-			})
-		})
+		this.setState({ data: userInfo })
 	}
 
 	handleTimer = () => {
@@ -81,26 +82,17 @@ export default class CreateAccount extends Component {
 	}
 
 	handleSignUp = async () => {
-		const {
-			username,
-			firstName,
-			lastName,
-			email,
-			password,
-			skills
-		} = this.state
-		const data = {
-			username,
-			password,
-			firstName,
-			lastName,
-			email,
-			skills
-		}
 		try {
-			const req = await signup(data)
+			const { username, email, firstName, lastName, password } = this.state
+			const req = await signup({
+				username,
+				email,
+				firstName,
+				lastName,
+				password
+			})
 			if (req) {
-				this.setState({ step: this.state.step + 1 })
+				this.nextStep()
 				this.handleTimer()
 			}
 		} catch (error) {
@@ -115,6 +107,14 @@ export default class CreateAccount extends Component {
 		this.setState({ step: this.state.step - 1 })
 	}
 
+	renderItem = (data) => {
+		return (
+			<CardSection style={styles.items}>
+				<Text>{data.item.key}</Text>
+			</CardSection>
+		)
+	}
+
 	render() {
 		const {
 			step,
@@ -126,6 +126,7 @@ export default class CreateAccount extends Component {
 			confirmPassword,
 			skill,
 			skills,
+			data,
 			isTaken
 		} = this.state
 		switch (step) {
@@ -148,8 +149,8 @@ export default class CreateAccount extends Component {
 							placeholder="Email"
 							value={email}
 							email={true}
-							error={isTaken}
 							onChangeText={(email) => this.handleCheckEmails(email)}
+							error={isTaken}
 						/>
 						<Button
 							title="Next"
@@ -165,7 +166,7 @@ export default class CreateAccount extends Component {
 							}
 						/>
 						<Button
-							title="Go Back"
+							title="Back"
 							onPress={() => this.props.navigation.goBack()}
 						/>
 					</LinearGradient>
@@ -176,29 +177,27 @@ export default class CreateAccount extends Component {
 						colors={['#3E0072', '#AE00E2']}
 						style={styles.gradient}>
 						<Input
-							placeholder="Joe_Sho"
+							placeholder="Username"
 							value={username}
-							username={true}
-							onChangeText={(username) => this.handleCheckUsername(username)}
-							error={isTaken}
+							onChangeText={(username) => this.setState({ username })}
 						/>
 						<Input
-							secureTextEntry={true}
 							placeholder="Password"
 							value={password}
+							secureTextEntry={true}
 							onChangeText={(password) => this.setState({ password })}
 						/>
 						<Input
 							placeholder="Confirm Password"
-							secureTextEntry={true}
 							value={confirmPassword}
 							onChangeText={(confirmPassword) =>
 								this.setState({ confirmPassword })
 							}
+							secureTextEntry={true}
 						/>
 						<Button
 							title="Next"
-							onPress={this.nextStep}
+							onPress={this.verifyData}
 							disabled={
 								username &&
 								password &&
@@ -216,70 +215,22 @@ export default class CreateAccount extends Component {
 					<LinearGradient
 						colors={['#3E0072', '#AE00E2']}
 						style={styles.gradient}>
-						<Input
-							placeholder="Languages"
-							value={skill}
-							onChangeText={(skill) => this.setState({ skill })}
-							name="ios-add-circle-outline"
-							disabled={skill ? false : true}
-							onPress={() =>
-								this.setState({
-									skills: [skill, ...this.state.skills],
-									skill: ''
-								})
-							}
-						/>
-						{skills
-							? skills.map((skill, index) => {
-									return (
-										<Input
-											key={index}
-											placeholder="Languages"
-											value={skill}
-											onChangeText={(skill) => this.setState({ skill })}
-											name="ios-add-circle-outline"
-											disabled={skill ? false : true}
-											onPress={() =>
-												this.setState({
-													skills: [skill, ...this.state.skills],
-													skill: ''
-												})
-											}
-										/>
-									)
-							  })
-							: null}
-						<Button
-							title="Next"
-							onPress={() => {
-								this.nextStep()
-								this.createData()
-							}}
-						/>
+						<Card>
+							{data
+								? data.map((data, index) => {
+										return (
+											<CardSection key={index}>
+												<Text style={styles.item}>{data.key}</Text>
+											</CardSection>
+										)
+								  })
+								: null}
+						</Card>
+						<Button title="Confirm" onPress={this.handleSignUp} />
 						<Button title="Back" onPress={this.prevStep} />
 					</LinearGradient>
 				)
 			case 4:
-				return (
-					<LinearGradient
-						contentContainerStyle={{ flexGrow: 1 }}
-						colors={['#3E0072', '#AE00E2']}
-						style={styles.gradient}>
-						<View style={styles.listContainer}>
-							<FlatList
-								data={this.state.data}
-								renderItem={({ item }) => (
-									<Text style={styles.verifyText} key={item.key}>
-										{item.key}
-									</Text>
-								)}
-							/>
-						</View>
-						<Button title="Confirm" onPress={this.handleSignUp} />
-						<Button title="Go Back" onPress={this.prevStep} />
-					</LinearGradient>
-				)
-			case 5:
 				return (
 					<AccountCreated
 						timer={this.state.timer}
@@ -300,16 +251,19 @@ const styles = {
 		justifyContent: 'center'
 	},
 	listContainer: {
-		height: 300,
-		width: 400,
-		alignSelf: 'center',
-		alignItems: 'center',
-		textAlign: 'center'
+		height: 100,
+		alignSelf: 'stretch',
+		justifyContent: 'center'
 	},
 	verifyText: {
 		color: '#f8f8f8',
 		fontSize: 18,
 		borderBottomWidth: 2,
 		borderBottomColor: '#f8f8f8'
+	},
+	items: {
+		textAlign: 'center',
+		justifyContent: 'center',
+		alignSelf: 'center'
 	}
 }

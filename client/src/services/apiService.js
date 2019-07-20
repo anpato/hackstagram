@@ -15,6 +15,7 @@ const api = Axios.create({
 export const signup = async (data) => {
 	try {
 		const req = await api.post('/auth/signup', data)
+		console.log(data)
 		return req
 	} catch (error) {
 		throw error

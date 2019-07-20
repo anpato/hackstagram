@@ -45,6 +45,6 @@ const styles = {
 	},
 	timer: {
 		color: '#30D000',
-		fontWeight: 700
+		fontWeight: '700'
 	}
 }

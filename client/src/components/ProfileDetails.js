@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, Button, Image } from 'react-native'
-
+import emptyProfile from '../assets/emptyProfile.jpg'
 const ProfileDetails = ({
 	username,
 	profileImage,
@@ -48,7 +48,15 @@ const ProfileDetails = ({
 	return (
 		<View style={styles.container}>
 			<View style={styles.userInfo}>
-				<Image source={{ uri: profileImage }} style={styles.image} />
+				{profileImage ? (
+					<Image source={{ uri: profileImage }} style={styles.image} />
+				) : (
+					<Image
+						source={require('../assets/emptyProfile.jpg')}
+						style={styles.image}
+					/>
+				)}
+
 				<Text>{username}</Text>
 			</View>
 			{measureFollowers()}

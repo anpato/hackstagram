@@ -47,7 +47,6 @@ const main = async () => {
 	const fakeUserData = await User.bulkCreate(fakeUsers, { returning: true })
 	// const fakePostData = await Post.bulkCreate(fakePosts, { returning: true })
 
-	// console.log(user)
 	await user.addPost(post)
 	await user.addComment(comment)
 

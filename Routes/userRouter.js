@@ -130,7 +130,6 @@ userRouter.post('/posts/users', async (req, res) => {
 })
 
 userRouter.get('/:id/suggested', async (req, res) => {
-	console.log(typeof req.params.id)
 	try {
 		const findUser = await User.findByPk(req.params.id, {
 			include: [

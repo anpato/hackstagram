@@ -17,6 +17,7 @@ const Input = ({
 }) => {
 	return (
 		<View style={styles.container}>
+			<Text style={styles.label}>{label}</Text>
 			{username === true ? (
 				<Text style={styles.errorText}>
 					{error === true ? 'Username in use' : email === true}
@@ -98,6 +99,12 @@ const styles = {
 		left: 200,
 		top: 50,
 		fontSize: 12
+	},
+	label: {
+		fontSize: 18,
+		position: 'absolute',
+		color: '#f8f8f8',
+		bottom: 40
 	}
 }
 export { Input }
