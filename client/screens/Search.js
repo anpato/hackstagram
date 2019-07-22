@@ -80,7 +80,7 @@ export default class Search extends Component {
 	}
 
 	render() {
-		const { labels, users, loading } = this.state
+		const { labels, users, loading, refreshing } = this.state
 		return (
 			<View style={styles.container}>
 				<Header
@@ -88,7 +88,7 @@ export default class Search extends Component {
 					labels={labels}
 					onChangeText={this.handleSearch}
 				/>
-				{loading === true ? (
+				{loading === true && !refreshing ? (
 					<Spinner />
 				) : (
 					<FlatList

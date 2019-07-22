@@ -118,7 +118,7 @@ userRouter.post('/posts/users', async (req, res) => {
 					title: fakePosts[j].title,
 					description: fakePosts[j].description,
 					image: fakePosts[j].image,
-					likes: fakePosts[j].likes
+					likes: Math.floor(Math.random() * 10000)
 				})
 				await posts.setUser(users[i])
 			}

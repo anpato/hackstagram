@@ -76,7 +76,6 @@ export default class Profile extends PureComponent {
 				followingCount: count.following,
 				posts
 			})
-			console.log(posts)
 			if (posts) {
 				this.setState({ data: true })
 			}

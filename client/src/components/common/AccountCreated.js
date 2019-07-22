@@ -4,7 +4,6 @@ import { LinearGradient } from 'expo-linear-gradient'
 import CheckMark from '../../assets/Checkmark.png'
 
 const AccountCreated = ({ navigation, timer }) => {
-	console.log(navigation)
 	if (timer === 0) {
 		return navigation.navigate('Home')
 	}

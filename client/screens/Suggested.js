@@ -66,7 +66,7 @@ export default class Search extends PureComponent {
 	}
 
 	render() {
-		const { users, loading } = this.state
+		const { users, loading, refreshing } = this.state
 		return (
 			<View style={styles.container}>
 				<Header title="Suggested" navigation={this.props.navigation} />
@@ -79,7 +79,7 @@ export default class Search extends PureComponent {
 							onRefresh={this.handleRefresh}
 						/>
 					}>
-					{loading === true ? (
+					{loading === true && !refreshing ? (
 						<Spinner />
 					) : (
 						<FlatList

@@ -15,7 +15,6 @@ const api = Axios.create({
 export const signup = async (data) => {
 	try {
 		const req = await api.post('/auth/signup', data)
-		console.log(data)
 		return req
 	} catch (error) {
 		throw error
@@ -86,7 +85,6 @@ export const getFollowersPost = async (id) => {
 }
 
 export const recommendFollowers = async (id) => {
-	console.log(id)
 	try {
 		const resp = await api.get(`/users/${id}/suggested`)
 		return resp.data

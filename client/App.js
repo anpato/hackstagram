@@ -17,9 +17,11 @@ import Search from './screens/Search'
 import PostCard from './screens/PostCard'
 import Suggested from './screens/Suggested'
 import { Platform } from '@unimodules/core'
+import SplashScreen from './screens/SplashScreen'
 
 const AppNavigator = createStackNavigator(
 	{
+		Splash: SplashScreen,
 		Home: Home,
 		CreateAccount: CreateAccount,
 		SignIn: SignIn
@@ -31,7 +33,6 @@ const AppNavigator = createStackNavigator(
 		}
 	}
 )
-
 const SettingsStack = createStackNavigator(
 	{
 		Settings: Settings

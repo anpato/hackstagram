@@ -24,7 +24,7 @@ export default class Posts extends PureComponent {
 		}
 	}
 
-	async componentDidMount() {
+	async componentWillMount() {
 		try {
 			await this.getUserId()
 			await this.getUserToken()
@@ -103,7 +103,7 @@ export default class Posts extends PureComponent {
 	}
 
 	render() {
-		const { loading, posts } = this.state
+		const { loading, posts, refreshing } = this.state
 		return (
 			<View style={styles.mainContainer}>
 				<Header title="App" navigation={this.props.navigation} />
@@ -116,7 +116,7 @@ export default class Posts extends PureComponent {
 							onRefresh={this.handleRefresh}
 						/>
 					}>
-					{loading === true ? (
+					{loading === true && !refreshing ? (
 						<Spinner />
 					) : (
 						<FlatList
