@@ -14,17 +14,13 @@ export default class SplashScreen extends Component {
 			const token = await AsyncStorage.getItem('user')
 			const user = JSON.parse(token)
 			this.setState({ user: user.token })
-			if (this.state.user) {
-				setTimeout(() => {
-					this.props.navigation.navigate('Auth')
-				}, 2000)
-			} else {
-				setTimeout(() => {
-					this.props.navigation.navigate('Home')
-				}, 2000)
-			}
+			setTimeout(() => {
+				this.props.navigation.navigate('Auth')
+			}, 2000)
 		} catch (error) {
-			throw error
+			setTimeout(() => {
+				this.props.navigation.navigate('Home')
+			}, 2000)
 		}
 	}
 
